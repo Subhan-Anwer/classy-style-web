@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  color: var(--foreground);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+
+
+.font-inter {
+  font-family: "Inter";
+}
+
+.font-poppins {
+  font-family: "Poppins";
+}
+
+.font-playfair {
+  font-family: "Playfair-Display";
+}
+
+.insta-gradient {
+  background: linear-gradient(45deg,  #ffd321 0%,#fa7c15 20%,#f30205 53%,#ba00b2 90%);
+}
