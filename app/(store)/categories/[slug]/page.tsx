@@ -24,3 +24,16 @@
 // }
 
 // export default categoryPage;
+
+
+import React from 'react'
+
+const page = () => {
+  return (
+    <div>
+      SLUG PAGE
+    </div>
+  )
+}
+
+export default page

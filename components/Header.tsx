@@ -6,7 +6,14 @@ import { IoSearch } from "react-icons/io5";
 import { FiShoppingCart } from "react-icons/fi";
 import { VscAccount } from "react-icons/vsc";
 import { HiMenu } from "react-icons/hi";
-import { IoClose } from 'react-icons/io5'
+import { IoClose } from "react-icons/io5";
+import {
+  ClerkLoaded,
+  SignedIn,
+  SignInButton,
+  UserButton,
+  useUser,
+} from "@clerk/nextjs";
 
 const navLinks = [
   { title: "Home", path: "/" },
@@ -17,7 +24,8 @@ const navLinks = [
 ];
 
 const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { user } = useUser();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <header className="w-full bg-black shadow-sm">
@@ -36,9 +44,7 @@ const Header = () => {
           </Link>
 
           {/* Nav Links */}
-          <nav
-            className="sm:block hidden font-inter md:mt-3 mt-0"
-          >
+          <nav className="sm:block hidden font-inter md:mt-3 mt-0">
             <ul className="flex flex-row gap-5 md:gap-8">
               {navLinks.map((link, index) => (
                 <li key={index}>
@@ -59,14 +65,37 @@ const Header = () => {
               size={28}
               className="cursor-pointer hover:text-white/50 transition"
             />
-            <FiShoppingCart
-              size={26}
-              className="cursor-pointer hover:text-white/50 transition"
-            />
-            <VscAccount
-              size={26}
-              className="cursor-pointer hover:text-white/50 transition"
-            />
+            
+            <ClerkLoaded>
+              <SignedIn>
+                <Link
+                  href="/orders"
+                  
+                >
+                  <FiShoppingCart
+                    size={26}
+                    className="cursor-pointer hover:text-white/50 transition"
+                  />
+                  
+                </Link>
+              </SignedIn>
+
+              {user ? (
+                <div className="flex relative items-center space-x-2">
+                  <UserButton />
+
+                  {/* Welcome Message (Hidden on Mobile) */}
+                  <div className="sm:block hidden text-xs">
+                    <p className="text-gray-400">Welcome Back</p>
+                    <p className="font-bold">
+                      {user.fullName || user.username}!
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <SignInButton mode="modal" />
+              )}
+            </ClerkLoaded>
 
             <button
               onClick={() => setIsMobileMenuOpen(true)}
@@ -90,7 +119,7 @@ const Header = () => {
                   <Link
                     href={link.path}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-white text-lg font-medium hover:text-white/50 transition-all duration-300"
+                    className="text-white text-lg font-inter font-medium hover:text-white/50 transition-all duration-300"
                   >
                     {link.title}
                   </Link>

@@ -16,7 +16,7 @@ const Hero = () => {
         <h1 className="font-playfair text-4xl sm:text-5xl md:text-6xl leading-tight">
           Elevate Your Everyday Look
           <br />
-          <span className="font-poppins text-lg sm:text-xl md:text-2xl block mt-2">
+          <span className="font-poppins text-lg sm:text-xl md:text-2xl block mt-2 ">
             Discover Timeless Fashion That Speaks Class
           </span>
         </h1>
