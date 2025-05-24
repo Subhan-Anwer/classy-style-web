@@ -13,6 +13,7 @@ import {
   UserButton,
   useUser,
 } from "@clerk/nextjs";
+import useBasketStore from "@/store/store";
 
 const navLinks = [
   { title: "Home", path: "/" },
@@ -23,6 +24,10 @@ const navLinks = [
 ];
 
 const Header = () => {
+  const itemCount = useBasketStore((state) =>
+    state.items.reduce((total, item) => total + item.quantity, 0)
+  );
+
   const { user } = useUser();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -64,18 +69,15 @@ const Header = () => {
               size={28}
               className="cursor-pointer hover:text-white/50 transition"
             />
-            
+
             <ClerkLoaded>
               <SignedIn>
-                <Link
-                  href="/cart"
-                  
-                >
+                <Link href="/cart" className="relative">
+                <span className={`absolute -top-3 -right-3 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs ${itemCount === 0 ? "hidden" : ""}`}>{itemCount}</span>
                   <FiShoppingCart
                     size={26}
                     className="cursor-pointer hover:text-white/50 transition"
                   />
-                  
                 </Link>
               </SignedIn>
 

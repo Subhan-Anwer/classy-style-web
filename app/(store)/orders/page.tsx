@@ -1,3 +1,16 @@
+import React from 'react'
+
+const page = () => {
+  return (
+    <div>
+      My Orders Page
+    </div>
+  )
+}
+
+export default page
+
+
 // import { formatCurrency } from "@/lib/formatCurrency";
 // import { imageUrl } from "@/lib/imageUrl";
 // import { getMyOrders } from "@/sanity/lib/orders/getMyOrders";

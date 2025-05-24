@@ -1,3 +1,16 @@
+import React from 'react'
+
+const page = () => {
+  return (
+    <div>
+      Search Page
+    </div>
+  )
+}
+
+export default page
+
+
 // import ProductGrid from "@/components/ProductGrid";
 // import { searchProductsByName } from "@/sanity/lib/products/searchProductsByName";
 

@@ -1,3 +1,15 @@
+import React from 'react'
+
+const page = () => {
+  return (
+    <div>
+        Success
+    </div>
+  )
+}
+
+export default page
+
 // "use client";
 
 // import { Button } from "@/components/ui/button";
