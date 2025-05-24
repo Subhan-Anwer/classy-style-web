@@ -5,6 +5,7 @@ import { Inter, Poppins, Playfair_Display } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SanityLive } from "@/sanity/lib/live";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Classy Style | Jewelry and Accessories",
@@ -38,6 +39,7 @@ export default function RootLayout({
           className={`${inter.className} ${playfair.className} ${poppins.className} antialiased`}
         >
           <main>
+            <Toaster />
             <Header />
             {children}
             <Footer />

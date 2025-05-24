@@ -38,7 +38,7 @@ const ProductThumbnail = ({ product }: { product: Product }) => {
         </h2>
 
         {/* Product Description */}
-        <p className="mt-2 text-sm font-poppins tracking-normal text-gray-600 line-clamp-2">
+        <p className="mt-4 text-sm font-poppins tracking-normal text-gray-600 line-clamp-2">
           {product.description
             ?.map((block) =>
               block._type === "block"
@@ -49,11 +49,11 @@ const ProductThumbnail = ({ product }: { product: Product }) => {
         </p>
 
         {/* Product Price */}
-        <div className="flex items-center gap-2">
-          <p className="font-inter mt-2 text-lg font-medium text-[#191919]">
+        <div className="flex items-center gap-2 mt-4">
+          <p className="font-inter  text-lg font-medium text-[#191919]">
             SAR {product.price?.toFixed(2)}
           </p>
-          <p className="font-inter mt-2 text-sm tracking-wider line-through font-medium text-[#747474]">
+          <p className="font-inter  text-sm tracking-wider line-through font-medium text-[#747474]">
             SAR {product.price && `${(product.price * 1.1).toFixed(2)}`}
           </p>
         </div>

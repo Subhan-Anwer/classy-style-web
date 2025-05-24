@@ -4,7 +4,6 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { FiShoppingCart } from "react-icons/fi";
-import { VscAccount } from "react-icons/vsc";
 import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import {
@@ -69,7 +68,7 @@ const Header = () => {
             <ClerkLoaded>
               <SignedIn>
                 <Link
-                  href="/orders"
+                  href="/cart"
                   
                 >
                   <FiShoppingCart
