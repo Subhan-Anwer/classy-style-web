@@ -7,26 +7,29 @@ import { useRouter } from "next/navigation";
 interface ProductsViewProps {
   products: Product[];
   categories: Category[];
+  selectedCategory?: string;
 }
 
-const ProductsView = ({ products, categories }: ProductsViewProps) => {
+
+// console.log(category.slug?.current);
+
+const ProductsView = ({ products, categories, selectedCategory }: ProductsViewProps) => {
+  
   const router = useRouter();
   return (
     <div className="flex flex-col">
-      {/* Categories */}
-      {/* <div className="w-full sm:w-[200px]">
-                <CategorySelectorComponent categories={categories} />
-            </div> */}
-
+      
+      {/* Categories buttons */}
       <div className="w-full mb-6 px-4 gap-6 flex justify-center items-center h-auto font-normal font-poppins text-lg text-center">
-        {/* Add this code in category selector component  */}
         {categories.map((category) => (
           <button
             key={category._id}
             onClick={() => {
               router.push(`/categories/${category.slug?.current}`);
             }}
-            className="border-2 border-black/80 px-3 py-1 rounded-[10px] hover:bg-black hover:text-white cursor-pointer"
+            className={`border-2 border-black/80 px-3 py-1 rounded-[10px] cursor-pointer
+              ${selectedCategory === category.slug?.current ? "bg-black text-white" : "bg-white text-black hover:bg-black  hover:text-white"}
+              `}
           >
             {category.title}
           </button>
