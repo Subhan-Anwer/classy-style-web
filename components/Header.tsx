@@ -8,7 +8,6 @@ import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import {
   ClerkLoaded,
-  SignedIn,
   SignInButton,
   UserButton,
   useUser,
@@ -71,7 +70,6 @@ const Header = () => {
             />
 
             <ClerkLoaded>
-              <SignedIn>
                 <Link href="/cart" className="relative">
                 <span className={`absolute -top-3 -right-3 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs ${itemCount === 0 ? "hidden" : ""}`}>{itemCount}</span>
                   <FiShoppingCart
@@ -79,7 +77,6 @@ const Header = () => {
                     className="cursor-pointer hover:text-white/50 transition"
                   />
                 </Link>
-              </SignedIn>
 
               {user ? (
                 <div className="flex relative items-center space-x-2">

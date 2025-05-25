@@ -1,31 +1,24 @@
 "use client";
 
-import { createCheckoutSession } from "@/actions/createCheckoutSession";
 import AddOrLessFromBasketButton from "@/components/AddOrLessFromBasketButton";
 import RemoveFromCart from "@/components/RemoveFromCart";
-import { Button } from "@/components/ui/button";
 import Loader from "@/components/ui/Loader";
 import { imageUrl } from "@/lib/imageUrl";
 import useBasketStore from "@/store/store";
-import { SignInButton, useAuth, useUser } from "@clerk/nextjs";
+import { SignInButton, useAuth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export type Metadata = {
-  orderNumber: string;
-  customerName: string;
-  customerEmail: string;
-  clerkUserId: string;
-};
-
-export default function page() {
+export default function CartPage() {
+  const router = useRouter();
   const groupedItems = useBasketStore((state) => state.getGroupedItems());
   const { isSignedIn } = useAuth();
-  const { user } = useUser();
+  // const { user } = useUser();
 
   const [isClient, setIsClient] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading,setIsLoading] = useState(false);
 
   // wait for the client to mount
   useEffect(() => {
@@ -38,6 +31,7 @@ export default function page() {
     return <Loader />;
   }
 
+  // If there are no items in the cart, display an empty cart message
   if (groupedItems.length === 0) {
     return (
       <div className="container mx-auto p-4 flex flex-col items-center justify-center min-h-[50vh]">
@@ -46,35 +40,15 @@ export default function page() {
         </h1>
 
         <Link href={"/shop"}>
-          <button className="bg-black text-white px-6 py-3 rounded-[6px] font-poppins ">Start Shopping</button>
+          <button className="bg-black text-white px-6 py-3 rounded-[6px] font-poppins ">
+            Start Shopping
+          </button>
         </Link>
       </div>
     );
   }
 
-  const handleCheckout = async () => {
-    if (!isSignedIn) return;
-    setIsLoading(true);
-
-    try {
-      const metadata: Metadata = {
-        orderNumber: crypto.randomUUID(),
-        customerName: user?.fullName ?? "Unknown",
-        customerEmail: user?.emailAddresses[0].emailAddress ?? "Unknown",
-        clerkUserId: user!.id,
-      };
-
-      const checkoutUrl = await createCheckoutSession(groupedItems, metadata);
-
-      if (checkoutUrl) {
-        window.location.href = checkoutUrl;
-      }
-    } catch (error) {
-      console.error("Error handling checkout session:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  
 
   return (
     <div className="container min-h-[80vh] mt-6 mx-auto p-4 max-w-6xl">
@@ -123,7 +97,7 @@ export default function page() {
                     <RemoveFromCart product={item.product} disabled={false} />
                   </div>
                   <p className="text-sm sm:text-base text-[#565656]">
-                    Price: $ {item.product.price?.toFixed(2)}
+                    Price: SAR {item.product.price?.toFixed(2)}
                   </p>
                   <div className="flex gap-2">
                     <p className="text-sm sm:text-base text-[#565656]">
@@ -157,13 +131,16 @@ export default function page() {
           </div>
 
           {isSignedIn ? (
-            <button
-              onClick={handleCheckout}
-              disabled={isLoading}
-              className="mt-7 font-poppins w-full bg-black text-white px-4 py-2 rounded  hover:bg-[#1b1b1b] disabled:bg-[#2e2d2d]"
-            >
-              {isLoading ? "Processing..." : "Checkout"}
-            </button>
+              <button
+                onClick={() => {
+                  setIsLoading(true)
+                  router.push("/checkout");
+                }}
+                disabled={isLoading}
+                className="mt-7 font-poppins w-full bg-black text-white px-4 py-2 rounded  hover:bg-[#1b1b1b] disabled:bg-[#2e2d2d]"
+              >
+                {isLoading ? "Processing..." : "Checkout"}
+              </button>
           ) : (
             <SignInButton mode="modal">
               <button className="mt-7 font-poppins w-full bg-black text-white px-4 py-2 rounded hover:bg-[#1b1b1b]">

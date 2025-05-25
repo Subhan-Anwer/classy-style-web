@@ -8,19 +8,8 @@ export const orderType = defineType({
     icon: BasketIcon,
     fields: [
         defineField({
-            name: 'orderNumber',
-            title: 'Order Number',
-            type: 'string',
-            validation: (Rule) => Rule.required(),
-        }),
-        defineField({
-            name: 'stripeCheckoutSessionId',
-            title: 'Stripe Checkout Session ID',
-            type: 'string',
-        }),
-        defineField({
-            name: 'stripeCustomerId',
-            title: 'Stripe Customer ID',
+            name: 'orderId',
+            title: 'Order Id',
             type: 'string',
             validation: (Rule) => Rule.required(),
         }),
@@ -39,12 +28,6 @@ export const orderType = defineType({
         defineField({
             name: 'email',
             title: 'Customer Email',
-            type: 'string',
-            validation: (Rule) => Rule.required(),
-        }),
-        defineField({
-            name: 'stripePaymentIntentId',
-            title: 'Stripe Payment Intent ID',
             type: 'string',
             validation: (Rule) => Rule.required(),
         }),
@@ -90,7 +73,7 @@ export const orderType = defineType({
         defineField({
             name: 'totalPrice',
             title: 'Total Price',
-            type: 'number',
+            type: 'string',
             validation: (Rule) => Rule.required().min(0),
         }),
         defineField({
@@ -100,18 +83,12 @@ export const orderType = defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
-            name: 'amountDiscount',
-            title: 'Amount Discount',
-            type: 'number',
-            validation: (Rule) => Rule.min(0),
-        }),
-        defineField({
             name: 'status',
             title: 'Order Status',
             type: 'string',
             options: {
                 list:[
-                    {title: "Pending", value: "pending"},
+                    {title: "Cash on Delivery", value: "cash-on-delivery"},
                     {title: "Paid", value: "paid"},
                     {title: "Shipped", value: "shipped"},
                     {title: "Delivered", value: "delivered"},
@@ -131,7 +108,7 @@ export const orderType = defineType({
             name: 'customerName',
             amount: 'totalPrice',
             currency: 'currency',
-            orderId: 'orderNumber',
+            orderId: 'orderId',
             email: 'email',
         },
         prepare(select) {

@@ -1,6 +1,5 @@
 import OurStory from "@/components/about-page/OurStory";
 import WhyChooseUs from "@/components/about-page/WhyChooseUs";
-import Image from "next/image";
 import React from "react";
 
 const services = [

@@ -43,7 +43,7 @@ const WhyChooseUs = () => {
               </h2>
               <p className="font-inter font-light lg:text-lg sm:text-base text-sm">
                 We prioritize fast and quick delivery so your special moments
-                aren't kept waiting.
+                aren&#39;t kept waiting.
               </p>
             </div>
           </div>

@@ -446,21 +446,7 @@
           "type": "string"
         }
       },
-      "orderNumber": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
-      "stripeCheckoutSessionId": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
-      "stripeCustomerId": {
+      "orderId": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
@@ -482,13 +468,6 @@
         "optional": true
       },
       "email": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
-      "stripePaymentIntentId": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
@@ -569,13 +548,6 @@
         },
         "optional": true
       },
-      "amountDiscount": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "number"
-        },
-        "optional": true
-      },
       "status": {
         "type": "objectAttribute",
         "value": {
@@ -583,7 +555,7 @@
           "of": [
             {
               "type": "string",
-              "value": "pending"
+              "value": "cash-on-delivery"
             },
             {
               "type": "string",

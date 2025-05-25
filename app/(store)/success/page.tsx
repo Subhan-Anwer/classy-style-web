@@ -1,6 +1,19 @@
-import React from 'react'
+"use client";
+import useBasketStore from '@/store/store';
+import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react'
 
-const page = () => {
+export default function SuccessPage () {
+  const searchParams = useSearchParams();
+  const orderId = searchParams.get("orderId");
+  const clearBasket = useBasketStore((state) => state.clearBasket);
+
+  useEffect(() => {
+    if (orderId) {
+      clearBasket();
+    }
+  }, [orderId, clearBasket]);
+
   return (
     <div>
         Success
@@ -8,9 +21,6 @@ const page = () => {
   )
 }
 
-export default page
-
-// "use client";
 
 // import { Button } from "@/components/ui/button";
 // import useBasketStore from "@/store/store";

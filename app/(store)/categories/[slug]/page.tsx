@@ -28,7 +28,6 @@
 import ProductsView from "@/components/ProductView";
 import { getAllCategories } from "@/sanity/lib/products/getAllCategories";
 import { getProductsByCategory } from "@/sanity/lib/products/getProductsByCategory";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
 

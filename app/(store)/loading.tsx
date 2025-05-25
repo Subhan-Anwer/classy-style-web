@@ -1,12 +1,12 @@
 import React from 'react'
 
-const page = () => {
+const loading = () => {
   return (
     <div>
-      {/* <Loader   /> */}
+      {/* <Loader /> */}
       
     </div>
   )
 }
 
-export default page
+export default loading

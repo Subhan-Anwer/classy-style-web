@@ -89,13 +89,10 @@ export type Order = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  orderNumber?: string;
-  stripeCheckoutSessionId?: string;
-  stripeCustomerId?: string;
+  orderId?: string;
   clerkUserId?: string;
   customerName?: string;
   email?: string;
-  stripePaymentIntentId?: string;
   products?: Array<{
     product?: {
       _ref: string;
@@ -108,8 +105,7 @@ export type Order = {
   }>;
   totalPrice?: number;
   currency?: string;
-  amountDiscount?: number;
-  status?: "pending" | "paid" | "shipped" | "delivered" | "cancelled";
+  status?: "cash-on-delivery" | "paid" | "shipped" | "delivered" | "cancelled";
   orderDate?: string;
 };
 

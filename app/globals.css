@@ -27,22 +27,3 @@ body {
 .insta-gradient {
   background: linear-gradient(45deg,  #ffd321 0%,#fa7c15 20%,#f30205 53%,#ba00b2 90%);
 }
-
-
-
-@keyframes spinner {
-   to {
-      transform: rotate(1turn);
-   }
-}
-
-
-.spinner {
-   width: 56px;
-   height: 56px;
-   border-radius: 50%;
-   border: 9px solid;
-   border-color: #dbdcef;
-   border-right-color: #e3af35;
-   animation: spinner 0.5s infinite linear;
-}
