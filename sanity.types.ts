@@ -93,6 +93,12 @@ export type Order = {
   clerkUserId?: string;
   customerName?: string;
   email?: string;
+  phone?: number;
+  address?: string;
+  city?: string;
+  postalCode?: number;
+  engravingName?: string;
+  note?: string;
   products?: Array<{
     product?: {
       _ref: string;
@@ -103,7 +109,7 @@ export type Order = {
     quantity?: number;
     _key: string;
   }>;
-  totalPrice?: number;
+  totalPrice?: string;
   currency?: string;
   status?: "cash-on-delivery" | "paid" | "shipped" | "delivered" | "cancelled";
   orderDate?: string;

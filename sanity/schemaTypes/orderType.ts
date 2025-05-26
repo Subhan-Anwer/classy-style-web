@@ -32,6 +32,41 @@ export const orderType = defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
+            name: 'phone',
+            title: 'Customer Phone No',
+            type: 'number',
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+            name: 'address',
+            title: 'Customer Address',
+            type: 'string',
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+            name: 'city',
+            title: 'Customer City',
+            type: 'string',
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+            name: 'postalCode',
+            title: 'Customer Postal Code',
+            type: 'number',
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+            name: 'engravingName',
+            title: 'Name To Engrave on Jewelry',
+            type: 'string',
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+            name: 'note',
+            title: 'Special Note by Customer',
+            type: 'string',
+        }),
+        defineField({
             name: 'products',
             title: 'Products',
             type: 'array',

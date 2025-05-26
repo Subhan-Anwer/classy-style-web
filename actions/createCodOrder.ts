@@ -10,6 +10,12 @@ type Metadata = {
   customerEmail: string;
   clerkUserId: string;
   totalPrice: string;
+  phone: number,
+  address: string,
+  city: string,
+  postalCode: number,
+  engravingName: string,
+  note?: string,
 };
 
 type GroupedBasketItems = {
@@ -21,7 +27,7 @@ export async function createCodOrder(
   items: GroupedBasketItems[],
   metadata: Metadata
 ) {
-  const { orderNumber, customerName, customerEmail, clerkUserId, totalPrice } =
+  const { orderNumber, customerName, customerEmail, clerkUserId, totalPrice, phone, address, city, postalCode, engravingName, note, } =
     metadata as Metadata;
 
     
@@ -38,12 +44,18 @@ export async function createCodOrder(
     const order = await backendClient.create({
       _type: "order",
       orderId: orderNumber,
-      customerName: customerName,
       clerkUserId: clerkUserId,
+      customerName: customerName,
       email: customerEmail,
+      phone: phone,
+      address: address,
+      city: city,
+      postalCode: postalCode,
+      engravingName: engravingName,
+      note: note,
+      products: sanityProducts,
       totalPrice: totalPrice,
       currency: "SAR",
-      products: sanityProducts,
     //   totalPrice: items.price ? amount_total / 100 : 0,
       status: "cash-on-delivery",
       orderDate: new Date().toISOString(),
@@ -51,6 +63,7 @@ export async function createCodOrder(
 
     // return { orderId: order._id};
     return order;
+    
   } catch (error) {
     console.error("❌ Failed to create COD order:", error);
     throw error;

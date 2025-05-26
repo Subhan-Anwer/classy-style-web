@@ -2,9 +2,6 @@
   "name": "classy-style-web",
   "version": "0.1.0",
   "private": true,
-  "overrides": {
-  "@sanity/client": "7.3.0"
-  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
