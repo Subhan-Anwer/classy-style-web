@@ -1,8 +1,11 @@
 "use client";
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+
+const tiktokUrl = "https://www.tiktok.com/";
+const instagramUrl = "https://www.instagram.com/officialclassystyle";
 
 const instaCards = [
   { src: "/insta-post-1.jpg", alt: "Customizable Ring with Name" },
@@ -26,10 +29,15 @@ const tiktokCards = [
   { src: "/tiktok-logo.png", alt: "Customizable Ring with Name" },
 ];
 
-const tiktokUrl = "https://www.tiktok.com/";
-const instagramUrl = "https://www.instagram.com/officialclassystyle";
-
 const CheckoutUs = () => {
+
+  const scrollSpeed = useMemo(() => {
+  if (typeof window !== "undefined") {
+    return window.innerWidth < 768 ? 6 : 35;
+  }
+  return 35; // default for SSR or unknown
+}, []);
+
   return (
     <section className="w-full py-24 px-2 sm:px-6 lg:px-8 flex flex-col items-center mb-32">
       <h2 className="text-center font-medium text-[40px] sm:text-5xl md:text-7xl font-playfair mb-16">
@@ -41,12 +49,13 @@ const CheckoutUs = () => {
       {/* Instagram Scroll Animation */}
       <div className="w-full overflow-hidden">
         <motion.div
+         key={scrollSpeed} 
           className="flex gap-6"
           animate={{
             x: "-50%",
           }}
           transition={{
-            duration: 35,
+            duration: scrollSpeed,
             repeat: Infinity,
             ease: "linear",
           }}
@@ -91,12 +100,14 @@ const CheckoutUs = () => {
       {/* Tiktok Scroll Animation */}
       <div className="w-full overflow-hidden mt-6">
         <motion.div
+         key={scrollSpeed} 
           className="flex gap-6"
           animate={{
+            // x: "-50%",
             translateX: ["-50%", "0%"],
           }}
           transition={{
-            duration: 35,
+            duration: scrollSpeed,
             repeat: Infinity,
             ease: "linear",
           }}
@@ -137,38 +148,6 @@ const CheckoutUs = () => {
           })}
         </motion.div>
       </div>
-
-      {/* <div className="bg-white w-full h-[280px]">
-          <div className="container mx-auto">
-            <div className="overflow-hidden bg-blue-400">
-              <motion.div
-                className="flex gap-10 flex-none bg-red-300"
-                animate={{
-                  translateX: "-50%",
-                }}
-                transition={{
-                  duration: 35,
-                  repeat: Infinity,
-                  ease: "linear",
-                  repeatType: "loop",
-                }}
-              >
-                  {instaCards.map((card, i) => (
-                    <div className="w-auto h-[280px]">
-                    <Image
-                      key={i}
-                      src={card.src}
-                      alt={card.alt}
-                      height={300}
-                      width={300}
-                      className="w-[280px] h-full bg-black"
-                    />
-                    </div>
-                  ))}
-              </motion.div>
-            </div>
-          </div>
-        </div> */}
     </section>
   );
 };
