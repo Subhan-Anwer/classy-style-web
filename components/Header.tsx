@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { FiShoppingCart } from "react-icons/fi";
 import { HiMenu } from "react-icons/hi";
@@ -13,6 +13,7 @@ import {
   useUser,
 } from "@clerk/nextjs";
 import useBasketStore from "@/store/store";
+import SearchOverlay from "./searchBarOverlay";
 
 const navLinks = [
   { title: "Home", path: "/" },
@@ -23,6 +24,22 @@ const navLinks = [
 ];
 
 const Header = () => {
+  
+  const [showSearch, setShowSearch] = useState(false);
+
+  // Enable "/" keyboard shortcut
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "/") {
+        e.preventDefault();
+        setShowSearch(true);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+
   const itemCount = useBasketStore((state) =>
     state.items.reduce((total, item) => total + item.quantity, 0)
   );
@@ -31,6 +48,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
+    <>
     <header className="w-full bg-black shadow-sm">
       <nav className="container mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-6 py-6 lg:py-4">
@@ -66,6 +84,7 @@ const Header = () => {
           <div className="font-inter flex items-center gap-5 md:gap-7 text-white">
             <IoSearch
               size={28}
+              onClick={() => setShowSearch(true)}
               className="cursor-pointer hover:text-white/50 transition"
             />
 
@@ -128,6 +147,9 @@ const Header = () => {
         </div>
       </nav>
     </header>
+
+    {showSearch && <SearchOverlay onClose={() => setShowSearch(false)} />}
+    </>
   );
 };
 
