@@ -1,12 +1,37 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const DiscountSection = () => {
   const discountCards = [
-    { img: "/premium-ring.jpg", name: "Premium Ring", price: 120, old: 140 },
-    { img: "/necklace.jpg", name: "Necklace", price: 120, old: 140 },
-    { img: "/bracelet.jpg", name: "Bracelet", price: 130, old: 160 },
-    { img: "/cufflink.jpg", name: "Cuff links", price: 135, old: 150 },
+    {
+      img: "/premium-ring.jpg",
+      name: "Premium Ring",
+      price: 120,
+      old: 140,
+      src: "/categories/rings",
+    },
+    {
+      img: "/necklace.jpg",
+      name: "Necklace",
+      price: 120,
+      old: 140,
+      src: "/categories/necklaces",
+    },
+    {
+      img: "/bracelet.jpg",
+      name: "Bracelet",
+      price: 130,
+      old: 160,
+      src: "/categories/bracelets",
+    },
+    {
+      img: "/cufflink.jpg",
+      name: "Cuff links",
+      price: 135,
+      old: 150,
+      src: "/categories/cufflinks",
+    },
   ];
 
   return (
@@ -23,16 +48,20 @@ const DiscountSection = () => {
         {/* Card no 1 */}
         {discountCards.map((item, i) => (
           <div key={i} className="flex flex-col  w-full sm:w-[45%] md:w-[22%]">
-            <Image
-              src={item.img}
-              alt={item.name}
-              className="w-full h-auto rounded-[10px] object-cover object-center mb-3 md:mb-5"
-              width={300}
-              height={300}
-            />
-            <h5 className="font-playfair text-[28px] md:text-3xl font-normal">
-              {item.name}
-            </h5>
+            <Link href={item.src}>
+              <Image
+                src={item.img}
+                alt={item.name}
+                className="w-full h-auto rounded-[10px] object-cover object-center mb-3 md:mb-5"
+                width={300}
+                height={300}
+              />
+            </Link>
+            <Link href={item.src}>
+              <h5 className="font-playfair text-[28px] md:text-3xl font-normal">
+                {item.name}
+              </h5>
+            </Link>
             <div className="flex gap-2.5 items-center mt-0 md:mt-3">
               <p className="font-inter text-lg md:text-xl tracking-[1px]">
                 SAR {item.price}

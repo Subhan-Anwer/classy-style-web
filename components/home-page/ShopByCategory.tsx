@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const ShopByCategory = () => {
@@ -11,22 +12,43 @@ const ShopByCategory = () => {
       {/* Catgories */}
       <div className="w-full flex justify-center flex-wrap  gap-9">
         {[
-          { categoryName: "Rings", imgSrc: "/ring-category.jpg" },
-          { categoryName: "Neclaces", imgSrc: "/necklace-category.jpg" },
-          { categoryName: "Bracelets", imgSrc: "/bracelet-category.jpg" },
-          { categoryName: "Cufflinks", imgSrc: "/cufflink-category.jpg" },
+          {
+            categoryName: "Rings",
+            imgSrc: "/ring-category.jpg",
+            src: "/categories/rings",
+          },
+          {
+            categoryName: "Neclaces",
+            imgSrc: "/necklace-category.jpg",
+            src: "/categories/necklaces",
+          },
+          {
+            categoryName: "Bracelets",
+            imgSrc: "/bracelet-category.jpg",
+            src: "/categories/bracelets",
+          },
+          {
+            categoryName: "Cufflinks",
+            imgSrc: "/cufflink-category.jpg",
+            src: "/categories/cufflinks",
+          },
         ].map((item, i) => (
           <div key={i} className="flex flex-col items-center">
-            <Image
-              src={item.imgSrc}
-              alt="premium-ring.jpg"
-              width={300}
-              height={400}
-              className="w-full sm:w-[280px] h-[320px] sm:h-[380px] rounded-[10px] object-cover object-center mb-2"
-            />
-            <h4 className="text-center font-medium md:text-[40px] sm:text-[35px] text-[30px] font-playfair">
-              {item.categoryName} &gt;
-            </h4>
+            <Link href={item.src}>
+              <Image
+                src={item.imgSrc}
+                alt="premium-ring.jpg"
+                width={300}
+                height={400}
+                className="w-full sm:w-[280px] h-[320px] hover:scale-[1.03] transition-all duration-300 sm:h-[380px] rounded-[10px] object-cover object-center mb-2"
+              />
+            </Link>
+
+            <Link href={item.src}>
+              <h4 className="text-center font-medium md:text-[40px] sm:text-[35px] text-[30px] font-playfair">
+                {item.categoryName} &gt;
+              </h4>
+            </Link>
           </div>
         ))}
       </div>
