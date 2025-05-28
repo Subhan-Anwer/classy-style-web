@@ -20,14 +20,14 @@ const ProductsView = ({ products, categories, selectedCategory }: ProductsViewPr
     <div className="flex flex-col">
       
       {/* Categories buttons */}
-      <div className="w-full mb-6 px-4 gap-6 flex justify-center items-center h-auto font-normal font-poppins text-lg text-center">
+      <div className="w-full mb-4 sm:mb-6 px-1 sm:px-4 gap-3 sm:gap-6 flex justify-center items-center flex-wrap h-auto font-normal font-poppins text-lg text-center">
         {categories.map((category) => (
           <button
             key={category._id}
             onClick={() => {
               router.push(`/categories/${category.slug?.current}`);
             }}
-            className={`border-2 border-black/80 px-3 py-1 rounded-[10px] cursor-pointer
+            className={`border sm:border-2 border-black/80 text-[15px] sm:text-[18px] px-2 sm:px-3 py-[2px] sm:py-1 rounded-[10px] cursor-pointer
               ${selectedCategory === category.slug?.current ? "bg-black text-white" : "bg-white text-black hover:bg-black  hover:text-white"}
               `}
           >
