@@ -24,7 +24,6 @@ const Footer = () => {
 
           {/* Links Parent Div */}
           <div className="mx-auto md:mt-9 mt-6 flex sm:flex-row flex-col items-start justify-between sm:gap-20 gap-10 my-6 md:my-0">
-
             {/* Useful links */}
             <div className="mx-auto flex flex-col items-center sm:items-start text-center sm:text-left w-auto md:-w-32">
               <h2 className="mb-6 text-base md:text-lg font-poppins font-semibold tracking-wide text-white uppercase dark:text-white">
@@ -32,22 +31,34 @@ const Footer = () => {
               </h2>
               <ul className="text-white font-normal font-poppins ">
                 <li className="mb-1 md:mb-2">
-                  <Link href="#" className="text-sm md:text-base hover:underline">
+                  <Link
+                    href="#"
+                    className="text-sm md:text-base hover:underline"
+                  >
                     Home
                   </Link>
                 </li>
                 <li className="mb-1 md:mb-2">
-                  <Link href="#" className="text-sm md:text-base hover:underline">
+                  <Link
+                    href="#"
+                    className="text-sm md:text-base hover:underline"
+                  >
                     About Us
                   </Link>
                 </li>
                 <li className="mb-1 md:mb-2">
-                  <Link href="#" className="text-sm md:text-base hover:underline">
+                  <Link
+                    href="#"
+                    className="text-sm md:text-base hover:underline"
+                  >
                     Shop
                   </Link>
                 </li>
                 <li className="mb-1 md:mb-2">
-                  <Link href="#" className="text-sm md:text-base hover:underline">
+                  <Link
+                    href="#"
+                    className="text-sm md:text-base hover:underline"
+                  >
                     Contact
                   </Link>
                 </li>
@@ -61,22 +72,34 @@ const Footer = () => {
               </h2>
               <ul className="text-white  font-normal font-poppins ">
                 <li className="mb-1 md:mb-2">
-                  <Link href="#" className="text-sm md:text-base hover:underline">
+                  <Link
+                    href="#"
+                    className="text-sm md:text-base hover:underline"
+                  >
                     Rings
                   </Link>
                 </li>
                 <li className="mb-1 md:mb-2">
-                  <Link href="#" className="text-sm md:text-base hover:underline">
+                  <Link
+                    href="#"
+                    className="text-sm md:text-base hover:underline"
+                  >
                     Bracelets
                   </Link>
                 </li>
                 <li className="mb-1 md:mb-2">
-                  <Link href="#" className="text-sm md:text-base hover:underline">
+                  <Link
+                    href="#"
+                    className="text-sm md:text-base hover:underline"
+                  >
                     Necklace
                   </Link>
                 </li>
                 <li className="mb-1 md:mb-2">
-                  <Link href="#" className="text-sm md:text-base hover:underline">
+                  <Link
+                    href="#"
+                    className="text-sm md:text-base hover:underline"
+                  >
                     Cufflinks
                   </Link>
                 </li>
@@ -98,6 +121,7 @@ const Footer = () => {
                 height={33}
                 className="w-[25px] sm:w-[33px] h-auto object-cover object-center"
               />
+              <Link href="https://instagram.com/officialclassystyle">
               <Image
                 src={"/icons/instagram.svg"}
                 alt="Instagram"
@@ -105,6 +129,7 @@ const Footer = () => {
                 height={33}
                 className="w-[25px] sm:w-[33px] h-auto object-cover object-center"
               />
+              </Link>
               <Image
                 src={"/icons/tiktok.svg"}
                 alt="Tiktok"
@@ -112,15 +137,21 @@ const Footer = () => {
                 height={28}
                 className="w-[23px] h-auto object-contain object-center"
               />
-              <Image
-                src={"/icons/whatsapp.svg"}
-                alt="WhatsApp"
-                width={33}
-                height={33}
-                className="w-[25px] sm:w-[33px] h-auto object-cover object-center"
-              />
+              <Link href="https://wa.me/+971543638507">
+                <Image
+                  src={"/icons/whatsapp.svg"}
+                  alt="WhatsApp"
+                  width={33}
+                  height={33}
+                  className="w-[25px] sm:w-[33px] h-auto object-cover object-center"
+                />
+              </Link>
             </div>
-            <p className="font-poppins text-base md:text-lg">Call : 0123-456-789</p>
+            <Link href="https://wa.me/+971543638507">
+              <p className="font-poppins text-base md:text-lg">
+                +971-54-363-8507
+              </p>
+            </Link>
           </div>
         </div>
       </div>
@@ -130,11 +161,15 @@ const Footer = () => {
         <p className="text-white text-center font-poppins font-light text-sm sm:text-base sm:leading-3 leading-6">
           Created by{" "}
           <Link href="https://subhan-portfolio.vercel.app/">
-            <span className="font-medium underline opacity-90 sm:opacity-100">Subhan</span>
+            <span className="font-medium underline opacity-90 sm:opacity-100">
+              Subhan
+            </span>
           </Link>{" "}
           - Powered by{" "}
           <Link href="https://subhan-portfolio.vercel.app/">
-            <span className="font-medium underline opacity-90 sm:opacity-100">Social Pulse</span>
+            <span className="font-medium underline opacity-90 sm:opacity-100">
+              Social Pulse
+            </span>
           </Link>
         </p>
       </div>
