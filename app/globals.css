@@ -27,3 +27,10 @@ body {
 .insta-gradient {
   background: linear-gradient(45deg,  #ffd321 0%,#fa7c15 20%,#f30205 53%,#ba00b2 90%);
 }
+
+/* No up down keys on number input */
+.no-up-down::-webkit-inner-spin-button,
+.no-up-down::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
