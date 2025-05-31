@@ -6,7 +6,7 @@ import useBasketStore from "@/store/store";
 import { useEffect, useState } from "react";
 import { ToastAction } from "./ui/toast";
 
-function RemoveFromCart({ product }: { product: Product; disabled: boolean }) {
+function RemoveFromCartButton({ product }: { product: Product; disabled: boolean }) {
   const { addItem, removeItem, getItemCount } = useBasketStore();
   const itemCount = getItemCount(product._id);
   const [isClient, setIsClient] = useState(false);
@@ -24,7 +24,7 @@ function RemoveFromCart({ product }: { product: Product; disabled: boolean }) {
       onClick={(e) => {
         e.stopPropagation();
       }}
-      className="flex items-center justify-center font-inter ml-4"
+      className="flex items-center justify-center font-inter"
     >
       {/* Remove / Cross button */}
       <button
@@ -53,12 +53,12 @@ function RemoveFromCart({ product }: { product: Product; disabled: boolean }) {
             duration: 2500,
           });
         }}
-        className={`w-5 h-5 text-[16px] hidden sm:flex items-center justify-center transition-colors duration-200 bg-red-500 text-white`}
+        className={`w-auto h-8 text-sm px-4 rounded-[6px] mt-2 sm:hidden flex items-center justify-center transition-colors duration-200 bg-black text-white`}
       >
-        x
+        Remove from Cart
       </button>
     </div>
   );
 }
 
-export default RemoveFromCart;
+export default RemoveFromCartButton;
