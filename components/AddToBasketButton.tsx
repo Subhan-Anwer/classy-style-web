@@ -15,7 +15,7 @@ function AddToBasketButton({
   disabled: boolean;
 }) {
   const { addItem } = useBasketStore();
-  const [selectedQuantity, setSelectedQuantity] = useState(0);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -27,13 +27,13 @@ function AddToBasketButton({
   }
 
   return (
-    <div className="w-[550px] h-32 border-2 border-black rounded-[8px] flex items-center justify-between px-8">
+    <div className="w-full max-w-[550px] h-auto border-2 border-black rounded-[8px] flex flex-col sm:flex-row items-center justify-between gap-4  px-8 py-6">
       {/* Quantity slector */}
       <div className="flex items-center gap-3">
         <p className="font-inter font-medium text-base">Quantity</p>
         <input
           type="number"
-          min={0}
+          min={1}
           max={product.stock}
           disabled={disabled}
           value={selectedQuantity}
@@ -41,7 +41,7 @@ function AddToBasketButton({
           placeholder="0"
           onChange={(e) => {
             const value = parseInt(e.target.value);
-            setSelectedQuantity(isNaN(value) ? 0 : Math.max(0, value));
+            setSelectedQuantity(isNaN(value) ? 1 : Math.max(1, value));
           }}
         />
       </div>
@@ -60,11 +60,11 @@ function AddToBasketButton({
                 window.open("/cart") // Redirect to cart page
               }}>View Cart</ToastAction>,
             });
-            setSelectedQuantity(0); // Reset after adding to basket
+            setSelectedQuantity(1); // Reset after adding to basket
           }
         }}
-        disabled={selectedQuantity === 0}
-        className="hover: font-inter font-bold text-base bg-black text-white hover:bg-black hover:scale-105 focus:outline-none active:scale-100 rounded-[6px] p-6 transition-all"
+        disabled={disabled}
+        className="md:w-auto w-full hover: font-inter font-bold text-base bg-black text-white hover:bg-black hover:scale-105 focus:outline-none active:scale-100 rounded-[6px] p-6 transition-all"
       >
         Add to Cart
       </Button>
