@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
-const tiktokUrl = "https://www.tiktok.com/";
+const tiktokUrl = "https://www.tiktok.com/@officialclassystyle";
 const instagramUrl = "https://www.instagram.com/officialclassystyle";
 
 const instaCards = [
@@ -16,9 +16,41 @@ const instaCards = [
   { src: "/insta-logo.png", alt: "Customizable Ring with Name" },
   { src: "/insta-post-2.jpg", alt: "Customizable Ring with Name" },
   { src: "/insta-logo.png", alt: "Customizable Ring with Name" },
+  { src: "/insta-post-1.jpg", alt: "Customizable Ring with Name" },
+  { src: "/insta-logo.png", alt: "Customizable Ring with Name" },
+  { src: "/insta-post-2.jpg", alt: "Customizable Ring with Name" },
+  { src: "/insta-logo.png", alt: "Customizable Ring with Name" },
+  { src: "/insta-post-1.jpg", alt: "Customizable Ring with Name" },
+  { src: "/insta-logo.png", alt: "Customizable Ring with Name" },
+  { src: "/insta-post-2.jpg", alt: "Customizable Ring with Name" },
+  { src: "/insta-logo.png", alt: "Customizable Ring with Name" },
+  { src: "/insta-post-1.jpg", alt: "Customizable Ring with Name" },
+  { src: "/insta-logo.png", alt: "Customizable Ring with Name" },
+  { src: "/insta-post-2.jpg", alt: "Customizable Ring with Name" },
+  { src: "/insta-logo.png", alt: "Customizable Ring with Name" },
+  { src: "/insta-post-1.jpg", alt: "Customizable Ring with Name" },
+  { src: "/insta-logo.png", alt: "Customizable Ring with Name" },
+  { src: "/insta-post-2.jpg", alt: "Customizable Ring with Name" },
+  { src: "/insta-logo.png", alt: "Customizable Ring with Name" },
 ];
 
 const tiktokCards = [
+  { src: "/tiktok-post-1.jpg", alt: "Customizable Ring with Name" },
+  { src: "/tiktok-logo.png", alt: "Customizable Ring with Name" },
+  { src: "/tiktok-post-2.jpg", alt: "Customizable Ring with Name" },
+  { src: "/tiktok-logo.png", alt: "Customizable Ring with Name" },
+  { src: "/tiktok-post-1.jpg", alt: "Customizable Ring with Name" },
+  { src: "/tiktok-logo.png", alt: "Customizable Ring with Name" },
+  { src: "/tiktok-post-2.jpg", alt: "Customizable Ring with Name" },
+  { src: "/tiktok-logo.png", alt: "Customizable Ring with Name" },
+  { src: "/tiktok-post-1.jpg", alt: "Customizable Ring with Name" },
+  { src: "/tiktok-logo.png", alt: "Customizable Ring with Name" },
+  { src: "/tiktok-post-2.jpg", alt: "Customizable Ring with Name" },
+  { src: "/tiktok-logo.png", alt: "Customizable Ring with Name" },
+  { src: "/tiktok-post-1.jpg", alt: "Customizable Ring with Name" },
+  { src: "/tiktok-logo.png", alt: "Customizable Ring with Name" },
+  { src: "/tiktok-post-2.jpg", alt: "Customizable Ring with Name" },
+  { src: "/tiktok-logo.png", alt: "Customizable Ring with Name" },
   { src: "/tiktok-post-1.jpg", alt: "Customizable Ring with Name" },
   { src: "/tiktok-logo.png", alt: "Customizable Ring with Name" },
   { src: "/tiktok-post-2.jpg", alt: "Customizable Ring with Name" },
