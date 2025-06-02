@@ -1,11 +1,11 @@
+import Loader from '@/components/ui/Loader'
 import React from 'react'
 
 const loading = () => {
   return (
-    <div>
-      {/* <Loader /> */}
-      
-    </div>
+    <main className='w-full h-[65vh] flex items-center justify-center' >
+      <Loader />
+    </main>
   )
 }
 
