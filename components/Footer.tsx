@@ -114,29 +114,40 @@ const Footer = () => {
             </h3>
             {/* Social Media Icons */}
             <div className="flex items-center justify-center gap-2 sm:gap-1">
-              <Image
-                src={"/icons/facebook.svg"}
-                alt="Facebook"
-                width={33}
-                height={33}
-                className="w-[25px] sm:w-[33px] h-auto object-cover object-center"
-              />
-              <Link href="https://instagram.com/officialclassystyle">
-              <Image
-                src={"/icons/instagram.svg"}
-                alt="Instagram"
-                width={33}
-                height={33}
-                className="w-[25px] sm:w-[33px] h-auto object-cover object-center"
-              />
+              {/* Facebook icon */}
+              <Link href="https://www.facebook.com/profile.php?id=61576318996827">
+                <Image
+                  src={"/icons/facebook.svg"}
+                  alt="Facebook"
+                  width={33}
+                  height={33}
+                  className="w-[25px] sm:w-[33px] h-auto object-cover object-center"
+                />
               </Link>
-              <Image
-                src={"/icons/tiktok.svg"}
-                alt="Tiktok"
-                width={28}
-                height={28}
-                className="w-[23px] h-auto object-contain object-center"
-              />
+
+              {/* Instagram icon */}
+              <Link href="https://instagram.com/officialclassystyle">
+                <Image
+                  src={"/icons/instagram.svg"}
+                  alt="Instagram"
+                  width={33}
+                  height={33}
+                  className="w-[25px] sm:w-[33px] h-auto object-cover object-center"
+                />
+              </Link>
+
+              {/* Tiktok icon */}
+              <Link href="https://www.tiktok.com/@officialclassystyle">
+                <Image
+                  src={"/icons/tiktok.svg"}
+                  alt="Tiktok"
+                  width={28}
+                  height={28}
+                  className="w-[23px] h-auto object-contain object-center"
+                />
+              </Link>
+
+              {/* Whatsapp icon */}
               <Link href="https://wa.me/+971543638507">
                 <Image
                   src={"/icons/whatsapp.svg"}
@@ -147,6 +158,8 @@ const Footer = () => {
                 />
               </Link>
             </div>
+
+            {/* Whatsapp Number */}
             <Link href="https://wa.me/+971543638507">
               <p className="font-poppins text-base md:text-lg">
                 +971-54-363-8507

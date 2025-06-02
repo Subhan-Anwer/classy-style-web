@@ -10,15 +10,15 @@ const contactDetails = [
     title: "Send Email",
     description:
       "For queries, orders, or collaborations, feel free to reach out anytime.",
-    link: "mailto:contact@classystyle.net",
-    linkTitle: "contact@classystyle.net",
+    link: "mailto:classystyle493@gmail.com",
+    linkTitle: "classystyle493@gmail.com",
     icon: Mail,
   },
   {
     title: "Call or WhatsApp",
     description: "Need quick help? Our team is just a call or message away.",
-    link: "https://www.wa.me/+123-456-789",
-    linkTitle: "+123-456-789",
+    link: "https://www.wa.me/+971543638507",
+    linkTitle: "+971543638507",
     icon: Phone,
   },
   {
