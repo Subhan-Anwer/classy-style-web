@@ -13,10 +13,10 @@ const Hero = () => {
   return (
     <div className="w-full h-[440px] text-center relative text-white">
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4">
-        <h1 className="font-playfair text-4xl sm:text-5xl md:text-6xl leading-tight">
+        <h1 className=" text-4xl sm:text-5xl md:text-6xl leading-tight">
           Elevate Your Everyday Look
           <br />
-          <span className="font-poppins text-lg sm:text-xl md:text-2xl block mt-2 ">
+          <span className=" text-lg sm:text-xl md:text-2xl block mt-2 ">
             Discover Timeless Fashion That Speaks Class
           </span>
         </h1>
