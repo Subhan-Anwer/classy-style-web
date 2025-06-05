@@ -115,7 +115,7 @@ const Footer = () => {
             {/* Social Media Icons */}
             <div className="flex items-center justify-center gap-2 sm:gap-1">
               {/* Facebook icon */}
-              <Link href="https://www.facebook.com/profile.php?id=61576318996827">
+              <Link href="https://www.facebook.com/officialclassystyle">
                 <Image
                   src={"/icons/facebook.svg"}
                   alt="Facebook"
