@@ -32,7 +32,7 @@ const Footer = () => {
               <ul className="text-white font-normal font-poppins ">
                 <li className="mb-1 md:mb-2">
                   <Link
-                    href="#"
+                    href="/"
                     className="text-sm md:text-base hover:underline"
                   >
                     Home
@@ -40,7 +40,7 @@ const Footer = () => {
                 </li>
                 <li className="mb-1 md:mb-2">
                   <Link
-                    href="#"
+                    href="/about"
                     className="text-sm md:text-base hover:underline"
                   >
                     About Us
@@ -48,7 +48,7 @@ const Footer = () => {
                 </li>
                 <li className="mb-1 md:mb-2">
                   <Link
-                    href="#"
+                    href="/shop"
                     className="text-sm md:text-base hover:underline"
                   >
                     Shop
@@ -56,7 +56,7 @@ const Footer = () => {
                 </li>
                 <li className="mb-1 md:mb-2">
                   <Link
-                    href="#"
+                    href="/contact"
                     className="text-sm md:text-base hover:underline"
                   >
                     Contact
@@ -73,7 +73,7 @@ const Footer = () => {
               <ul className="text-white  font-normal font-poppins ">
                 <li className="mb-1 md:mb-2">
                   <Link
-                    href="#"
+                    href="/categories/rings"
                     className="text-sm md:text-base hover:underline"
                   >
                     Rings
@@ -81,7 +81,7 @@ const Footer = () => {
                 </li>
                 <li className="mb-1 md:mb-2">
                   <Link
-                    href="#"
+                    href="/categories/bracelets"
                     className="text-sm md:text-base hover:underline"
                   >
                     Bracelets
@@ -89,7 +89,7 @@ const Footer = () => {
                 </li>
                 <li className="mb-1 md:mb-2">
                   <Link
-                    href="#"
+                    href="/categories/necklaces"
                     className="text-sm md:text-base hover:underline"
                   >
                     Necklace
@@ -97,7 +97,7 @@ const Footer = () => {
                 </li>
                 <li className="mb-1 md:mb-2">
                   <Link
-                    href="#"
+                    href="/categories/cufflinks"
                     className="text-sm md:text-base hover:underline"
                   >
                     Cufflinks
