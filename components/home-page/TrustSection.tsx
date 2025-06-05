@@ -14,11 +14,11 @@ import {
 //   FaStarHalfAlt, // for testimonials
 } from "react-icons/fa";
 
-interface Testimonial {
-  text: string;
-  author: string;
-  stars: number;
-}
+// interface Testimonial {
+//   text: string;
+//   author: string;
+//   stars: number;
+// }
 
 // const testimonials: Testimonial[] = [
 //   {
