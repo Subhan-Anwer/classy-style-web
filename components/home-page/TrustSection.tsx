@@ -1,17 +1,17 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+// import { useState, useEffect, useRef } from "react";
 import {
     FaTruck ,
     FaBolt,
     FaGem,
     FaHeart,
-  FaLock,
-  FaShieldAlt,
-  FaHandshake,
-  FaChevronLeft, // for testimonials
-  FaChevronRight, // for testimonials
-  FaStar, // for testimonials
-  FaStarHalfAlt, // for testimonials
+//   FaLock,
+//   FaShieldAlt,
+//   FaHandshake,
+//   FaChevronLeft, // for testimonials
+//   FaChevronRight, // for testimonials
+//   FaStar, // for testimonials
+//   FaStarHalfAlt, // for testimonials
 } from "react-icons/fa";
 
 interface Testimonial {
@@ -20,28 +20,28 @@ interface Testimonial {
   stars: number;
 }
 
-const testimonials: Testimonial[] = [
-  {
-    text: "The bespoke necklace is simply breathtaking. The attention to detail is unparalleled, making it truly one-of-a-kind.",
-    author: "Isabella C.",
-    stars: 5,
-  },
-  {
-    text: "Impeccable service and an absolutely stunning piece. The brilliance of the diamonds is captivating. A true treasure.",
-    author: "David L.",
-    stars: 2.5,
-  },
-  {
-    text: "My engagement ring from here is beyond perfect. The quality and elegance are evident, and the customer experience was seamless.",
-    author: "Sofia P.",
-    stars: 5,
-  },
-  {
-    text: "Absolutely delighted with my purchase. The craftsmanship is superb, and it arrived so quickly. A truly luxurious experience.",
-    author: "Michael B.",
-    stars: 4.5,
-  },
-];
+// const testimonials: Testimonial[] = [
+//   {
+//     text: "The bespoke necklace is simply breathtaking. The attention to detail is unparalleled, making it truly one-of-a-kind.",
+//     author: "Isabella C.",
+//     stars: 5,
+//   },
+//   {
+//     text: "Impeccable service and an absolutely stunning piece. The brilliance of the diamonds is captivating. A true treasure.",
+//     author: "David L.",
+//     stars: 2.5,
+//   },
+//   {
+//     text: "My engagement ring from here is beyond perfect. The quality and elegance are evident, and the customer experience was seamless.",
+//     author: "Sofia P.",
+//     stars: 5,
+//   },
+//   {
+//     text: "Absolutely delighted with my purchase. The craftsmanship is superb, and it arrived so quickly. A truly luxurious experience.",
+//     author: "Michael B.",
+//     stars: 4.5,
+//   },
+// ];
 
 const TrustBadges = [
   {
@@ -67,8 +67,8 @@ const TrustBadges = [
 ];
 
 const TrustSection = () => {
-  const [currentSlide, setCurrentSlide] = useState<number>(0);
-  const slideIntervalRef = useRef<NodeJS.Timeout | null>(null);
+//   const [currentSlide, setCurrentSlide] = useState<number>(0);
+//   const slideIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Function to display a specific slide and update the active dot
   //   const showSlide = (n: number) => {
