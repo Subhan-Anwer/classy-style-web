@@ -6,21 +6,21 @@ const DiscountSection = () => {
   const discountCards = [
     {
       img: "/premium-ring.jpg",
-      name: "Premium Ring",
+      name: "Premium Rings",
       price: 120,
       old: 140,
       src: "/categories/rings",
     },
     {
       img: "/necklace.jpg",
-      name: "Necklace",
+      name: "Necklaces",
       price: 120,
       old: 140,
       src: "/categories/necklaces",
     },
     {
       img: "/bracelet.jpg",
-      name: "Bracelet",
+      name: "Bracelets",
       price: 130,
       old: 160,
       src: "/categories/bracelets",
