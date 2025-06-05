@@ -4,6 +4,7 @@ import DiscountSection from "@/components/home-page/DiscountSection";
 import FeaturedSection from "@/components/home-page/FeaturedSection";
 import Hero from "@/components/home-page/Hero";
 import ShopByCategory from "@/components/home-page/ShopByCategory";
+import TestimonialsCarousel from "@/components/home-page/Testimonials";
 import TrustSection from "@/components/home-page/TrustSection";
 
 
@@ -17,11 +18,14 @@ export default function Home() {
     <div>
       <Hero />
 
-      {/* Teust Section */}
+      {/* Trust Section */}
       <TrustSection />
 
       {/* Get 10% discount Section */}
       <DiscountSection />
+
+      {/* Testimonial Section */}
+      <TestimonialsCarousel />
 
       {/* Featured Products Section */}
       <FeaturedSection />
