@@ -4,6 +4,7 @@ import DiscountSection from "@/components/home-page/DiscountSection";
 import FeaturedSection from "@/components/home-page/FeaturedSection";
 import Hero from "@/components/home-page/Hero";
 import ShopByCategory from "@/components/home-page/ShopByCategory";
+import TrustSection from "@/components/home-page/TrustSection";
 
 
 // export const dynamic = "force-static";
@@ -15,6 +16,9 @@ export default function Home() {
   return (
     <div>
       <Hero />
+
+      {/* Teust Section */}
+      <TrustSection />
 
       {/* Get 10% discount Section */}
       <DiscountSection />
