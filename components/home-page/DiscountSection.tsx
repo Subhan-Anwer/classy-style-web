@@ -58,7 +58,7 @@ const DiscountSection = () => {
               />
             </Link>
             <Link href={item.src}>
-              <h5 className="font-playfair text-[28px] md:text-3xl font-normal">
+              <h5 className="font-playfair text-[28px] md:text-3xl font-bold">
                 {item.name}
               </h5>
             </Link>
