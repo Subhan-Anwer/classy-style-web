@@ -8,7 +8,7 @@ const DiscountSection = () => {
       img: "/premium-ring.jpg",
       name: "Premium Rings",
       price: 120,
-      old: 140,
+      aedPrice: 117.48,
       src: "/categories/rings",
     },
     {
@@ -67,7 +67,7 @@ const DiscountSection = () => {
                 SAR {item.price}
               </p>
               <p className="font-inter text-sm md:text-base text-[#747474] line-through">
-                SAR {item.old}
+                SAR {item.price * 1.1}
               </p>
             </div>
           </div>

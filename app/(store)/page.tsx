@@ -1,4 +1,5 @@
 
+import CurrencySwitcher from "@/components/CurrencySwitcher";
 import CheckoutUs from "@/components/home-page/CheckoutUs";
 import DiscountSection from "@/components/home-page/DiscountSection";
 import FeaturedSection from "@/components/home-page/FeaturedSection";
@@ -20,6 +21,9 @@ export default function Home() {
 
       {/* Trust Section */}
       <TrustSection />
+
+      {/* Currency Switcher */}
+      <CurrencySwitcher />
 
       {/* Get 10% discount Section */}
       <DiscountSection />

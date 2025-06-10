@@ -1,4 +1,5 @@
 
+import CurrencySwitcher from "@/components/CurrencySwitcher";
 import ProductsView from "@/components/ProductView";
 import { getAllCategories } from "@/sanity/lib/products/getAllCategories";
 import { getAllProducts } from "@/sanity/lib/products/getAllProducts";
@@ -15,6 +16,10 @@ const page = async () => {
 
   return (
     <div className="w-full">
+
+      {/* Currency Switcher */}
+      <CurrencySwitcher />
+
       {/* Heading */}
       <div className="w-full mt-16 mx-auto mb-6 text-center">
         <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold">Shop</h2>
