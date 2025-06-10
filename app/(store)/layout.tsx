@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { SanityLive } from "@/sanity/lib/live";
 import { Toaster } from "@/components/ui/toaster";
 import NewsMarquee from "@/components/NewsMarquee";
+import { CurrencyProvider } from "@/context/CurrencyContext";
 
 export const metadata: Metadata = {
   title: "Classy Style | Jewelry and Accessories",
@@ -43,7 +44,7 @@ export default function RootLayout({
             <Toaster />
             <NewsMarquee />
             <Header />
-            {children}
+            <CurrencyProvider>{children}</CurrencyProvider>
             <Footer />
           </main>
           <SanityLive />
