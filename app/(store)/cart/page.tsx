@@ -5,8 +5,8 @@ import CurrencySwitcher from "@/components/CurrencySwitcher";
 import RemoveFromCart from "@/components/RemoveFromCart";
 import RemoveFromCartButton from "@/components/RemoveFromCartButton";
 import Loader from "@/components/ui/Loader";
-import { useCurrency } from "@/context/CurrencyContext";
 import { imageUrl } from "@/lib/imageUrl";
+import useCurrencyStore from "@/store/currencyStore";
 import useBasketStore from "@/store/store";
 import { SignInButton, useAuth } from "@clerk/nextjs";
 import Image from "next/image";
@@ -15,7 +15,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function CartPage() {
-  const { currency } = useCurrency();
+  const currency = useCurrencyStore((state) => state.currency);
+  
 
   const router = useRouter();
   const groupedItems = useBasketStore((state) => state.getGroupedItems());
