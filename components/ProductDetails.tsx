@@ -1,21 +1,27 @@
 "use client";
 
-import { useCurrency } from "@/context/CurrencyContext";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
 import AddToBasketButton from "./AddToBasketButton";
 import { imageUrl } from "@/lib/imageUrl";
 import CurrencySwitcher from "./CurrencySwitcher";
 import { Product } from "@/sanity.types";
+import useCurrencyStore from "@/store/currencyStore";
+import { useEffect, useState } from "react";
 
-interface ProductDetailsProps {
-  product: Product;
-}
+export default function ProductDetails({ product }: { product: Product }) {
+  const currency = useCurrencyStore((state) => state.currency);
+  const [hydrated, setHydrated] = useState(false);
 
-export default function ProductDetails({ product }: ProductDetailsProps) {
-  const { currency } = useCurrency();
+  // Wait for localStorage to hydrate (for SSR safety)
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
-  const price = currency === "SAR" ? product.price : product.aedPrice;
+  if (!hydrated) return null;
+
+  const price =
+    currency === "SAR" ? (product.price ?? 0) : (product.aedPrice ?? 0);
   const oldPrice = price ? price * 1.1 : 0;
   const isOutOfStock = product.stock != null && product.stock <= 0;
 
