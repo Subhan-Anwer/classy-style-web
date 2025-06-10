@@ -143,7 +143,7 @@ export default async function OrdersPage() {
                         </div>
 
                         <p className="text-right font-bold bg-blue-200">
-                          {order.currency === "AED" && product.product?.aedPrice && product.quantity
+                          {product.product?.aedPrice && product.quantity
                             ? formatCurrency(product.product.aedPrice * product.quantity, order.currency ?? localCurrency)
                             : "N/A"}
                         </p>
