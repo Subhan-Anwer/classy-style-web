@@ -38,7 +38,13 @@ export const productType = defineType( {
         }),
         defineField({
             name: 'price',
-            title: 'Price',
+            title: 'SAR Price',
+            type: 'number',
+            validation: Rule => Rule.required().min(0)
+        }),
+        defineField({
+            name: 'aedPrice',
+            title: 'AED Price',
             type: 'number',
             validation: Rule => Rule.required().min(0)
         }),
@@ -59,12 +65,13 @@ export const productType = defineType( {
         select: {
             title: 'name',
             media: 'image',
-            subtitle: 'price'
+            price: 'price',
+            aedPrice: 'aedPrice',
         },
         prepare(select) {
             return {
                 title: select.title,
-                subtitle: `$${select.subtitle}`,
+                subtitle: `SAR-${select.price} AED-${select.aedPrice}`,
                 media: select.media,
             }
         }
