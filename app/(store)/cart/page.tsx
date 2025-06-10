@@ -1,9 +1,11 @@
 "use client";
 
 import AddOrLessFromBasketButton from "@/components/AddOrLessFromBasketButton";
+import CurrencySwitcher from "@/components/CurrencySwitcher";
 import RemoveFromCart from "@/components/RemoveFromCart";
 import RemoveFromCartButton from "@/components/RemoveFromCartButton";
 import Loader from "@/components/ui/Loader";
+import { useCurrency } from "@/context/CurrencyContext";
 import { imageUrl } from "@/lib/imageUrl";
 import useBasketStore from "@/store/store";
 import { SignInButton, useAuth } from "@clerk/nextjs";
@@ -13,6 +15,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function CartPage() {
+  const { currency } = useCurrency();
+
   const router = useRouter();
   const groupedItems = useBasketStore((state) => state.getGroupedItems());
   const { isSignedIn } = useAuth();
@@ -51,6 +55,9 @@ export default function CartPage() {
 
   return (
     <div className="container min-h-[80vh] mt-6 mx-auto p-4 max-w-6xl">
+      {/* Currency Switcher */}
+      <CurrencySwitcher />
+
       <h1 className="text-5xl font-semibold mb-6 sm:mb-10 text-center text-black">
         Your Cart
       </h1>
@@ -96,7 +103,10 @@ export default function CartPage() {
                     <RemoveFromCart product={item.product} disabled={false} />
                   </div>
                   <p className="text-sm sm:text-base text-[#565656]">
-                    Price: SAR {item.product.price?.toFixed(2)}
+                    Price: {currency}{" "}
+                    {currency === "SAR"
+                      ? item.product.price?.toFixed(2)
+                      : item.product.aedPrice?.toFixed(2)}
                   </p>
                   <div className="flex gap-2 sm:mx-0 mx-auto items-center sm:justify-start justify-center sm:mt-0 mt-2">
                     <p className="text-sm sm:text-base text-[#565656]">
@@ -128,7 +138,10 @@ export default function CartPage() {
             <p className="flex font-poppins font-semibold justify-between text-xl sm:text-2xl border-t border-gray-400 pt-2">
               <span>Total:</span>
               <span>
-                SAR {useBasketStore.getState().getTotalPrice().toFixed(2)}
+                {currency}{" "}
+                {currency === "SAR"
+                  ? useBasketStore.getState().getTotalPrice().toFixed(2)
+                  : useBasketStore.getState().getTotalPriceInAED().toFixed(2)}
               </span>
             </p>
           </div>

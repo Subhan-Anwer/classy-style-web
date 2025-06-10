@@ -6,8 +6,13 @@ import Image from "next/image";
 import AddToBasketButton from "./AddToBasketButton";
 import { imageUrl } from "@/lib/imageUrl";
 import CurrencySwitcher from "./CurrencySwitcher";
+import { Product } from "@/sanity.types";
 
-export default function ProductDetails({ product: product }: any) {
+interface ProductDetailsProps {
+  product: Product;
+}
+
+export default function ProductDetails({ product }: ProductDetailsProps) {
   const { currency } = useCurrency();
 
   const price = currency === "SAR" ? product.price : product.aedPrice;

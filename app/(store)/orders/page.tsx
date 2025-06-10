@@ -1,27 +1,9 @@
-// import React from 'react'
-
-// const page = () => {
-//   return (
-//     <div>
-//       My Orders Page
-//     </div>
-//   )
-// }
-
-// export default page
-
 import { formatCurrency } from "@/lib/formatCurrency";
 import { imageUrl } from "@/lib/imageUrl";
 import { getMyOrders } from "@/sanity/lib/orders/getMyOrders";
 import { auth } from "@clerk/nextjs/server";
-import { Metadata } from "next";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-
-export const metadata: Metadata = {
-  title: "Shopit | Orders",
-  description: "Developed by Subhan Anwer",
-};
 
 export default async function OrdersPage() {
   const { userId } = await auth();
@@ -31,7 +13,8 @@ export default async function OrdersPage() {
   }
 
   const orders = await getMyOrders(userId);
-  // console.log("Your orders", orders);
+  console.log("order currency", orders?.[0].currency);
+  console.log("total price", orders?.[0].totalPrice);
 
   const localCurrency = "SAR";
 
@@ -103,7 +86,10 @@ export default async function OrdersPage() {
                     <div className="sm:text-right">
                       <p className="text-sm text-gray-600">Total Amount</p>
                       <p className="text-lg font-bold">
-                        {formatCurrency(Number(order.totalPrice) || 0, localCurrency)}
+                        {formatCurrency(
+                          Number(order.totalPrice) || 0,
+                          order.currency ?? localCurrency
+                        )}
                       </p>
                     </div>
                   </div>
@@ -158,12 +144,9 @@ export default async function OrdersPage() {
                           </div>
                         </div>
 
-                        <p className="text-right font-bold">
-                          {product.product?.price && product.quantity
-                            ? formatCurrency(
-                                product.product.price * product.quantity,
-                                order.currency ?? localCurrency
-                              )
+                        <p className="text-right font-bold bg-blue-200">
+                          {order.currency === "AED" && product.product?.aedPrice && product.quantity
+                            ? formatCurrency(product.product.aedPrice * product.quantity, order.currency ?? localCurrency)
                             : "N/A"}
                         </p>
                       </div>

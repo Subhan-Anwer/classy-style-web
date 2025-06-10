@@ -16,6 +16,7 @@ type Metadata = {
   postalCode: number,
   engravingName: string,
   note?: string,
+  currency: string
 };
 
 type GroupedBasketItems = {
@@ -27,7 +28,7 @@ export async function createCodOrder(
   items: GroupedBasketItems[],
   metadata: Metadata
 ) {
-  const { orderNumber, customerName, customerEmail, clerkUserId, totalPrice, phone, address, city, postalCode, engravingName, note, } =
+  const { orderNumber, customerName, customerEmail, clerkUserId, totalPrice, phone, address, city, postalCode, engravingName, note, currency,} =
     metadata as Metadata;
 
     
@@ -55,7 +56,7 @@ export async function createCodOrder(
       note: note,
       products: sanityProducts,
       totalPrice: totalPrice,
-      currency: "SAR",
+      currency: currency,
     //   totalPrice: items.price ? amount_total / 100 : 0,
       status: "cash-on-delivery",
       orderDate: new Date().toISOString(),

@@ -5,8 +5,11 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useBasketStore } from "@/store/store";
 import { createCodOrder } from "@/actions/createCodOrder";
+import useCurrencyStore from "@/store/currencyStore";
 
 export default function CheckoutPage() {
+  const currency = useCurrencyStore((state) => state.currency);
+  console.log(currency);
   const router = useRouter();
   const { user, isSignedIn } = useUser();
   const groupedItems = useBasketStore((state) => state.getGroupedItems());
@@ -39,7 +42,8 @@ export default function CheckoutPage() {
         postalCode: Number(postalCode),
         engravingName,
         note,
-        totalPrice: useBasketStore.getState().getTotalPrice().toFixed(2),
+        totalPrice: currency === "SAR" ? useBasketStore.getState().getTotalPrice().toFixed(2) : useBasketStore.getState().getTotalPriceInAED().toFixed(2),
+        currency: currency, // make it dynamic
       };
 
       const result = await createCodOrder(groupedItems, metadata);
