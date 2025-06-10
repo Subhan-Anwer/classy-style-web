@@ -13,8 +13,6 @@ export default async function OrdersPage() {
   }
 
   const orders = await getMyOrders(userId);
-  console.log("order currency", orders?.[0].currency);
-  console.log("total price", orders?.[0].totalPrice);
 
   const localCurrency = "SAR";
 

@@ -14,11 +14,9 @@ export const useCurrencyStore = create<CurrencyState>()(
       setCurrency: (currency) => set({ currency }),
     }),
     {
-      name: "currency-store", // key in localStorage
+      name: "currency-store",
     }
   )
 );
-
-console.log(useCurrencyStore.getState().currency, "currency setted");
 
 export default useCurrencyStore;

@@ -2,13 +2,23 @@ import { imageUrl } from "@/lib/imageUrl";
 import { Product } from "@/sanity.types";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import { useCurrency } from "@/context/CurrencyContext";
+import React, { useEffect, useState } from "react";
+import useCurrencyStore from "@/store/currencyStore";
 
 const ProductThumbnail = ({ product }: { product: Product }) => {
+
+  const currency = useCurrencyStore((state) => state.currency);
+  const [hydrated, setHydrated] = useState(false);
+
+  // Wait for localStorage to hydrate (for SSR safety)
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+
+  if (!hydrated) return null;
+
   const isOutOfStock = product.stock != null && product.stock <= 0;
 
-  const { currency, symbol } = useCurrency();
   const price =
     currency === "SAR" ? (product.price ?? 0) : (product.aedPrice ?? 0);
   const oldPrice = price * 1.1;
@@ -58,10 +68,10 @@ const ProductThumbnail = ({ product }: { product: Product }) => {
         {/* Product Price */}
         <div className="flex items-center gap-2 mt-4">
           <p className="font-inter  text-lg font-medium text-[#191919]">
-            {symbol} {price?.toFixed(2)}
+             {currency === "SAR" ? `SAR ${price.toFixed(2)}` : `AED ${price.toFixed(2)}`} 
           </p>
           <p className="font-inter  text-sm tracking-wider line-through font-medium text-[#747474]">
-            {symbol} {oldPrice?.toFixed(2)}
+            {currency === "SAR" ? `SAR ${oldPrice.toFixed(2)}` : `AED ${oldPrice.toFixed(2)}`} 
           </p>
         </div>
       </div>
