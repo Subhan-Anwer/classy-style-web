@@ -16,7 +16,7 @@ export default function CurrencySwitcher() {
   if (!hydrated) return null;
 
   return (
-    <div className="fixed top-[40%] right-0 z-50 flex flex-col font-inter">
+    <div className="fixed bottom-[65%] right-0 z-50 flex flex-col font-inter">
       {["SAR", "AED"].map((curr) => (
         <button
           key={curr}
