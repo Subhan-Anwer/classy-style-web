@@ -1,6 +1,9 @@
+"use client";
+
+import useCurrencyStore from "@/store/currencyStore";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const FeaturedSection = () => {
   const discountCards = [
@@ -34,6 +37,16 @@ const FeaturedSection = () => {
     },
   ];
 
+  const currency = useCurrencyStore((state) => state.currency);
+    const [hydrated, setHydrated] = useState(false);
+  
+    // Wait for localStorage to hydrate (for SSR safety)
+    useEffect(() => {
+      setHydrated(true);
+    }, []);
+  
+    if (!hydrated) return null;
+
   return (
     <section className="w-full py-24 px-2 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
       <h2 className="text-center font-medium text-[40px] sm:text-5xl md:text-7xl font-playfair mb-12">
@@ -58,10 +71,10 @@ const FeaturedSection = () => {
             </h5>
             <div className="flex gap-2.5 items-center mt-0 md:mt-3">
               <p className="font-inter text-lg md:text-xl tracking-[1px]">
-                SAR 170
+                {currency} 170
               </p>
               <p className="font-inter text-sm md:text-base text-[#747474] line-through">
-                SAR 210
+                {currency} 210
               </p>
             </div>
           </div>
@@ -84,10 +97,10 @@ const FeaturedSection = () => {
                 </h5>
                 <div className="flex gap-2.5 items-center mt-0 md:mt-3">
                   <p className="font-inter text-lg md:text-xl tracking-[1px]">
-                    SAR {item.price}
+                    {currency} {item.price}
                   </p>
                   <p className="font-inter text-sm md:text-base text-[#747474] line-through">
-                    SAR {item.old}
+                    {currency} {item.price * 1.1}
                   </p>
                 </div>
               </div>
