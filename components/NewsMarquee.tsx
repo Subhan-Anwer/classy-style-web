@@ -12,7 +12,9 @@ const NewsMarquee = () => {
           pauseOnHover={true}
           className="text-white text-[15px]"
         >
-          Free Delivery All Over Middle East ! &nbsp;&nbsp;&nbsp;&nbsp;
+          Free Delivery All Over Middle East !
+          ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎  ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎  
+          Cash on Delivery Available
         </Marquee>
       </div>
     </div>
