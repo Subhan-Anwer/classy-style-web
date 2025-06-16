@@ -2,7 +2,7 @@
 
 import { backendClient } from "@/sanity/lib/backendClient";
 import { BasketItem } from "@/store/store";
-import { revalidatePath } from "next/cache";
+// import { revalidatePath } from "next/cache";
 
 type Metadata = {
   orderNumber: string;

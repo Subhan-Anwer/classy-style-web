@@ -9,7 +9,6 @@ import useCurrencyStore from "@/store/currencyStore";
 
 export default function CheckoutPage() {
   const currency = useCurrencyStore((state) => state.currency);
-  console.log(currency);
   const router = useRouter();
   const { user, isSignedIn } = useUser();
   const groupedItems = useBasketStore((state) => state.getGroupedItems());
@@ -42,7 +41,10 @@ export default function CheckoutPage() {
         postalCode: Number(postalCode),
         engravingName,
         note,
-        totalPrice: currency === "SAR" ? useBasketStore.getState().getTotalPrice().toFixed(2) : useBasketStore.getState().getTotalPriceInAED().toFixed(2),
+        totalPrice:
+          currency === "SAR"
+            ? useBasketStore.getState().getTotalPrice().toFixed(2)
+            : useBasketStore.getState().getTotalPriceInAED().toFixed(2),
         currency: currency, // make it dynamic
       };
 
@@ -50,7 +52,30 @@ export default function CheckoutPage() {
       console.log("✅ Order Result:", result);
 
       if (result._id) {
-        router.push(`/success?orderId=${result._id}`);
+        // 👇 Send the order email to client
+        await fetch("/api/send-order-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            orderId: result.orderId,
+            customerName: user?.fullName ?? "Unknown",
+            products: groupedItems.map((item) => ({
+              name: item.product.name,
+              quantity: item.quantity,
+              price:
+                currency === "SAR"
+                  ? item.product.price
+                  : (item.product.aedPrice ?? 0),
+            })),
+            totalPrice: metadata.totalPrice,
+            currency,
+          }),
+        });
+
+        // Redirect to success page
+        router.push(`/success?orderId=${result.orderId}`);
       } else {
         alert("❌ Failed to place order.");
       }
