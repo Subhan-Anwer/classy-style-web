@@ -59,18 +59,19 @@ export default function CheckoutPage() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            orderDocId: result._id,
             orderId: result.orderId,
             customerName: user?.fullName ?? "Unknown",
-            products: groupedItems.map((item) => ({
-              name: item.product.name,
-              quantity: item.quantity,
-              price:
-                currency === "SAR"
-                  ? item.product.price
-                  : (item.product.aedPrice ?? 0),
-            })),
+            
             totalPrice: metadata.totalPrice,
             currency,
+            customerEmail: user?.emailAddresses[0].emailAddress ?? "Unknown",
+            phone: Number(phone),
+            address: address, 
+            city: city, 
+            postalCode: Number(postalCode), 
+            engravingName: engravingName, 
+            note: note,
           }),
         });
 
@@ -108,6 +109,7 @@ export default function CheckoutPage() {
                   placeholder="Phone Number"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
+                  required
                   className="w-full focus:outline-none focus:border-[#292929] border border-[#bdbdbd] bg-[#f8f8f8] px-4 py-3 rounded-[6px] font-poppins text-black"
                 />
                 <input
@@ -115,6 +117,7 @@ export default function CheckoutPage() {
                   placeholder="Address"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
+                  required
                   className="w-full focus:outline-none focus:border-[#292929] border border-[#bdbdbd] bg-[#f8f8f8] px-4 py-3 rounded-[6px] font-poppins text-black"
                 />
                 <input
@@ -122,6 +125,7 @@ export default function CheckoutPage() {
                   placeholder="City"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
+                  required
                   className="w-full focus:outline-none focus:border-[#292929] border border-[#bdbdbd] bg-[#f8f8f8] px-4 py-3 rounded-[6px] font-poppins text-black"
                 />
                 <input
@@ -129,6 +133,7 @@ export default function CheckoutPage() {
                   placeholder="Postal Code"
                   value={postalCode}
                   onChange={(e) => setPostalCode(e.target.value)}
+                  required
                   className="w-full focus:outline-none focus:border-[#292929] border border-[#bdbdbd] bg-[#f8f8f8] px-4 py-3 rounded-[6px] font-poppins text-black"
                 />
               </div>
@@ -145,6 +150,7 @@ export default function CheckoutPage() {
                   placeholder="Name to Engrave on Jewelry"
                   value={engravingName}
                   onChange={(e) => setEngravingName(e.target.value)}
+                  required
                   className="w-full focus:outline-none focus:border-[#292929] border border-[#bdbdbd] bg-[#f8f8f8] px-4 py-3 rounded-[6px] font-poppins text-black"
                 />
                 <textarea

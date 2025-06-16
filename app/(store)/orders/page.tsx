@@ -143,9 +143,20 @@ export default async function OrdersPage() {
                         </div>
 
                         <p className="text-right font-bold">
-                          {product.product?.aedPrice && product.quantity
-                            ? formatCurrency(product.product.aedPrice * product.quantity, order.currency ?? localCurrency)
-                            : "N/A"}
+                          {(() => {
+                            const isSAR = order.currency === "SAR";
+                            const price = isSAR
+                              ? product.product?.price
+                              : product.product?.aedPrice;
+                            const quantity = product.quantity ?? 1;
+
+                            if (price == null) return "N/A";
+
+                            return formatCurrency(
+                              price * quantity,
+                              order.currency ?? localCurrency
+                            );
+                          })()}
                         </p>
                       </div>
                     ))}
