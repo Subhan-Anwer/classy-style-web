@@ -114,6 +114,19 @@ const Footer = () => {
             </h3>
             {/* Social Media Icons */}
             <div className="flex items-center justify-center gap-2 sm:gap-1">
+
+              {/* Whatsapp icon */}
+              <Link href="https://wa.me/+971543638507">
+                <Image
+                  src={"/icons/whatsapp.svg"}
+                  alt="WhatsApp"
+                  width={33}
+                  height={33}
+                  className="w-[25px] sm:w-[33px] h-auto object-cover object-center"
+                />
+              </Link>
+
+              
               {/* Facebook icon */}
               <Link href="https://www.facebook.com/officialclassystyle">
                 <Image
@@ -144,17 +157,6 @@ const Footer = () => {
                   width={28}
                   height={28}
                   className="w-[23px] h-auto object-contain object-center"
-                />
-              </Link>
-
-              {/* Whatsapp icon */}
-              <Link href="https://wa.me/+971543638507">
-                <Image
-                  src={"/icons/whatsapp.svg"}
-                  alt="WhatsApp"
-                  width={33}
-                  height={33}
-                  className="w-[25px] sm:w-[33px] h-auto object-cover object-center"
                 />
               </Link>
             </div>
