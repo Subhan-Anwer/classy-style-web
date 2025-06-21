@@ -34,6 +34,23 @@ const ContactPage = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const [selectedCountry, setSelectedCountry] = useState({
+    name: "UAE",
+    code: "+971",
+    flag: "🇦🇪",
+  });
+
+  const countries = [
+    { name: "Pakistan", code: "+92", flag: "🇵🇰" },
+    { name: "United States", code: "+1", flag: "🇺🇸" },
+    { name: "United Kingdom", code: "+44", flag: "🇬🇧" },
+    { name: "United Arab Emirates", code: "+971", flag: "🇦🇪" },
+    { name: "India", code: "+91", flag: "🇮🇳" },
+    { name: "Germany", code: "+49", flag: "🇩🇪" },
+  ];
+
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [msg, setMsg] = useState("");
@@ -46,7 +63,7 @@ const ContactPage = () => {
     try {
       const metadata = {
         name: name ?? "Unknown",
-        phone: Number(phone),
+        phone: `${selectedCountry.code}${phone}`, // Combine country code with phone number
         msg: msg,
       };
 
@@ -136,26 +153,79 @@ const ContactPage = () => {
                 id="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your name"
+                maxLength={50}
                 className="w-full rounded-[6px] focus:bg-gray-100 bg-white text-black font-poppins px-3 h-10 border border-black"
               />
             </div>
 
-            <div className="flex flex-col gap-1 items-start justify-center w-full sm:w-[45%]">
+            {/* Phone number with country code dropdown */}
+            <div className="flex flex-col gap-1 items-start justify-center w-full sm:w-[45%] relative">
               <label
                 htmlFor="phone"
                 className="font-poppins text-black/80 text-lg"
               >
                 Phone Number
               </label>
-              <input
-                type="number"
-                name="phone"
-                required
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                id="phone"
-                className="w-full rounded-[6px] focus:bg-gray-100 bg-white text-black font-poppins px-3 h-10 border border-black no-up-down"
-              />
+
+              <div className="flex w-full relative">
+                <button
+                  type="button"
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className="z-10 inline-flex items-center font-inter gap-1 px-3 py-[9px] text-sm font-medium text-black  border border-black  rounded-s-[6px]"
+                >
+                  <span className="font-emoji" >{selectedCountry.flag}</span>
+                  {selectedCountry.code}
+                  {/* Down arrow */}
+                  <svg
+                    className="w-2.5 h-2.5 ml-1"
+                    viewBox="0 0 10 6"
+                    fill="none"
+                  >
+                    <path
+                      d="M1 1L5 5L9 1"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  id="phone"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  maxLength={15}
+                  className="w-full rounded-e-[6px] focus:bg-gray-100 bg-white text-black font-poppins px-3 h-10 border border-black border-l-0"
+                  placeholder="123-456-7890"
+                />
+
+                {dropdownOpen && (
+                  <div className="absolute top-[48px] z-20 arial bg-white border border-gray-300 w-full rounded-[6px] shadow-md max-h-60 overflow-y-auto">
+                    <ul className="text-sm text-black">
+                      {countries.map((country) => (
+                        <li key={country.code}>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setSelectedCountry(country);
+                              setDropdownOpen(false);
+                            }}
+                            className="w-full text-left px-3 py-2 hover:bg-gray-100 flex items-center gap-2"
+                          >
+                            <span className="font-emoji">{country.flag}</span>
+                            {country.name} ({country.code})
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
@@ -169,6 +239,8 @@ const ContactPage = () => {
               value={msg}
               required
               onChange={(e) => setMsg(e.target.value)}
+              placeholder="Type your message here..."
+              maxLength={250}
               className="w-full max-w-full min-h-[140px] resize-none rounded-[6px] focus:bg-gray-100 bg-white text-black font-poppins px-3 py-3 h-10 border border-black"
             />
           </div>

@@ -65,6 +65,14 @@ export default {
       animation: {
         wave: "wave 1s ease-in-out infinite",
       },
+      fontFamily: {
+        emoji: [
+          '"Apple Color Emoji"',
+          '"Segoe UI Emoji"',
+          "Noto Color Emoji",
+          "sans-serif",
+        ],
+      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],

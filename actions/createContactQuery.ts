@@ -5,7 +5,7 @@ import { backendClient } from "@/sanity/lib/backendClient";
 
 type Metadata = {
   name: string;
-  phone: number;
+  phone: string;
   msg: string;
 };
 
