@@ -20,12 +20,6 @@ export const contactType = defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
-            name: 'hello',
-            title: 'Hello Testing',
-            type: 'string',
-            validation: (Rule) => Rule.required(),
-        }),
-        defineField({
             name: 'msg',
             title: 'Message',
             type: 'text',
