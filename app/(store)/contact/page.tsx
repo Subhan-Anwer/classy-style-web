@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Mail, Phone, Instagram } from "lucide-react";
 import { createContactQuery } from "@/actions/createContactQuery";
 
@@ -43,13 +43,31 @@ const ContactPage = () => {
   });
 
   const countries = [
-    { name: "Pakistan", code: "+92", flag: "🇵🇰" },
+    { name: "Saudi Arabia", code: "+966", flag: "🇸🇦" },
+    { name: "United Arab Emirates", code: "+971", flag: "🇦🇪" },
     { name: "United States", code: "+1", flag: "🇺🇸" },
     { name: "United Kingdom", code: "+44", flag: "🇬🇧" },
-    { name: "United Arab Emirates", code: "+971", flag: "🇦🇪" },
+    { name: "Pakistan", code: "+92", flag: "🇵🇰" },
     { name: "India", code: "+91", flag: "🇮🇳" },
-    { name: "Germany", code: "+49", flag: "🇩🇪" },
   ];
+  
+  const dropdownRef = useRef<HTMLDivElement | null>(null); 
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -168,13 +186,14 @@ const ContactPage = () => {
                 Phone Number
               </label>
 
-              <div className="flex w-full relative">
+              <div className="flex w-full relative" ref={dropdownRef}>
                 <button
                   type="button"
                   onClick={() => setDropdownOpen(!dropdownOpen)}
                   className="z-10 inline-flex items-center font-inter gap-1 px-3 py-[9px] text-sm font-medium text-black  border border-black  rounded-s-[6px]"
+                  
                 >
-                  <span className="font-emoji" >{selectedCountry.flag}</span>
+                  <span className="font-emoji">{selectedCountry.flag}</span>
                   {selectedCountry.code}
                   {/* Down arrow */}
                   <svg
@@ -193,7 +212,7 @@ const ContactPage = () => {
                 </button>
 
                 <input
-                  type="tel"
+                  type="number"
                   name="phone"
                   required
                   id="phone"

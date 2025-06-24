@@ -10,7 +10,7 @@ type Metadata = {
   customerEmail: string;
   clerkUserId: string;
   totalPrice: string;
-  phone: number,
+  phone: string,
   address: string,
   city: string,
   postalCode: number,

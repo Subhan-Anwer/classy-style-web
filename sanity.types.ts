@@ -75,7 +75,7 @@ export type ContactQuery = {
   _updatedAt: string;
   _rev: string;
   name?: string;
-  phone?: number;
+  phone?: string;
   msg?: string;
   date?: string;
 };
@@ -105,7 +105,7 @@ export type Order = {
   clerkUserId?: string;
   customerName?: string;
   email?: string;
-  phone?: number;
+  phone?: string;
   address?: string;
   city?: string;
   postalCode?: number;
@@ -311,7 +311,7 @@ export type MY_ORDERS_QUERYResult = Array<{
   clerkUserId?: string;
   customerName?: string;
   email?: string;
-  phone?: number;
+  phone?: string;
   address?: string;
   city?: string;
   postalCode?: number;

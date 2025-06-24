@@ -1,7 +1,7 @@
 "use client";
 
 import { useUser } from "@clerk/nextjs";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useBasketStore } from "@/store/store";
 import { createCodOrder } from "@/actions/createCodOrder";
@@ -23,6 +23,42 @@ export default function CheckoutPage() {
   const [engravingName, setEngravingName] = useState("");
   const [note, setNote] = useState("");
 
+  // Country Selection State
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState({
+    name: "UAE",
+    code: "+971",
+    flag: "🇦🇪",
+  });
+
+  const countries = [
+    { name: "Saudi Arabia", code: "+966", flag: "🇸🇦" },
+    { name: "United Arab Emirates", code: "+971", flag: "🇦🇪" },
+    { name: "United States", code: "+1", flag: "🇺🇸" },
+    { name: "United Kingdom", code: "+44", flag: "🇬🇧" },
+    { name: "Pakistan", code: "+92", flag: "🇵🇰" },
+    { name: "India", code: "+91", flag: "🇮🇳" },
+  ];
+
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isSignedIn || groupedItems.length === 0) return;
@@ -35,7 +71,7 @@ export default function CheckoutPage() {
         clerkUserId: user.id,
         customerName: user?.fullName ?? "Unknown",
         customerEmail: user?.emailAddresses[0].emailAddress ?? "Unknown",
-        phone: Number(phone),
+        phone: `${selectedCountry.code}${phone}`, // Combine country code with phone number
         address,
         city,
         postalCode: Number(postalCode),
@@ -49,7 +85,7 @@ export default function CheckoutPage() {
       };
 
       const result = await createCodOrder(groupedItems, metadata);
-      console.log("✅ Order Result:", result);
+      // console.log("✅ Order Result:", result);
 
       if (result._id) {
         // 👇 Send the order email to client
@@ -62,15 +98,14 @@ export default function CheckoutPage() {
             orderDocId: result._id,
             orderId: result.orderId,
             customerName: user?.fullName ?? "Unknown",
-            
             totalPrice: metadata.totalPrice,
             currency,
             customerEmail: user?.emailAddresses[0].emailAddress ?? "Unknown",
-            phone: Number(phone),
-            address: address, 
-            city: city, 
-            postalCode: Number(postalCode), 
-            engravingName: engravingName, 
+            phone: phone,
+            address: address,
+            city: city,
+            postalCode: Number(postalCode),
+            engravingName: engravingName,
             note: note,
           }),
         });
@@ -104,14 +139,61 @@ export default function CheckoutPage() {
                 Delivery Information
               </h2>
               <div className="space-y-4">
-                <input
-                  type="text"
-                  placeholder="Phone Number"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  required
-                  className="w-full focus:outline-none focus:border-[#292929] border border-[#bdbdbd] bg-[#f8f8f8] px-4 py-3 rounded-[6px] font-poppins text-black"
-                />
+                <div className="flex w-full relative" ref={dropdownRef}>
+                  <button
+                    type="button"
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
+                    className="z-10 inline-flex items-center font-inter gap-1 px-3 py-[9px] text-sm font-medium text-black  border border-black  rounded-s-[6px]"
+                  >
+                    <span className="font-emoji">{selectedCountry.flag}</span>
+                    {selectedCountry.code}
+                    {/* Down arrow */}
+                    <svg
+                      className="w-2.5 h-2.5 ml-1"
+                      viewBox="0 0 10 6"
+                      fill="none"
+                    >
+                      <path
+                        d="M1 1L5 5L9 1"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  <input
+                    type="number"
+                    placeholder="Phone Number"
+                    value={phone}
+                    maxLength={15}
+                    onChange={(e) => setPhone(e.target.value)}
+                    required
+                    className="w-full focus:outline-none focus:border-[#292929] border border-[#bdbdbd] bg-[#f8f8f8] px-4 py-3 rounded-[6px] font-poppins text-black"
+                  />
+                  {dropdownOpen && (
+                    <div className="absolute top-[48px] z-20 arial bg-white border border-gray-300 w-full rounded-[6px] shadow-md max-h-60 overflow-y-auto">
+                      <ul className="text-sm text-black">
+                        {countries.map((country) => (
+                          <li key={country.code}>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setSelectedCountry(country);
+                                setDropdownOpen(false);
+                              }}
+                              className="w-full text-left px-3 py-2 hover:bg-gray-100 flex items-center gap-2"
+                            >
+                              <span className="font-emoji">{country.flag}</span>
+                              {country.name} ({country.code})
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
                 <input
                   type="text"
                   placeholder="Address"

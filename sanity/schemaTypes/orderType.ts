@@ -34,7 +34,7 @@ export const orderType = defineType({
         defineField({
             name: 'phone',
             title: 'Customer Phone No',
-            type: 'number',
+            type: 'string',
             validation: (Rule) => Rule.required(),
         }),
         defineField({
