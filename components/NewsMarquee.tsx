@@ -5,7 +5,7 @@ import React from "react";
 const NewsMarquee = () => {
   return (
     <div className="bg-black border-b border-gray-500 h-12 w-full overflow-hidden font-poppins tracking-wider text-[15px] font-normal flex items-center justify-center">
-      <div className="w-full px-8">
+      <div className="w-full sm:px-8 px-4">
         <Marquee
           gradient={false}
           speed={75}
