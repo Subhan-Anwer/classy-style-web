@@ -1,6 +1,8 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
 
-export default clerkMiddleware();
+export default clerkMiddleware({
+  authorizedParties: ['https://classystyle.net', 'https://classystyle.vercel.app'],
+})
 
 export const config = {
   matcher: [
