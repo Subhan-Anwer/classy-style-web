@@ -1,5 +1,4 @@
 import "../globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter, Poppins, Playfair_Display } from "next/font/google";
 import Header from "@/components/Header";
@@ -8,6 +7,7 @@ import { SanityLive } from "@/sanity/lib/live";
 import { Toaster } from "@/components/ui/toaster";
 import NewsMarquee from "@/components/NewsMarquee";
 import { CurrencyProvider } from "@/context/CurrencyContext";
+import { AuthProvider } from "@/context/AuthContext";
 
 export const metadata: Metadata = {
   title: "Classy Style | Jewelry and Accessories",
@@ -35,11 +35,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider dynamic>
-      <html lang="en">
-        <body
-          className={`${inter.className} ${playfair.className} ${poppins.className} antialiased`}
-        >
+    <html lang="en">
+      <body
+        className={`${inter.className} ${playfair.className} ${poppins.className} antialiased`}
+      >
+        <AuthProvider>
           <main>
             <Toaster />
             <NewsMarquee />
@@ -48,8 +48,8 @@ export default function RootLayout({
             <Footer />
           </main>
           <SanityLive />
-        </body>
-      </html>
-    </ClerkProvider>
+        </AuthProvider>
+      </body>
+    </html>
   );
 }
