@@ -11,7 +11,7 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
-const Login = () => {
+const CheckoutLogin = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [email, setEmail] = useState("");
@@ -210,4 +210,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default CheckoutLogin;

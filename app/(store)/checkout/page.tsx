@@ -1,6 +1,6 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
+import { useAuth } from "@/context/AuthContext";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useBasketStore } from "@/store/store";
@@ -10,7 +10,7 @@ import useCurrencyStore from "@/store/currencyStore";
 export default function CheckoutPage() {
   const currency = useCurrencyStore((state) => state.currency);
   const router = useRouter();
-  const { user, isSignedIn } = useUser();
+  const { user } = useAuth();
   const groupedItems = useBasketStore((state) => state.getGroupedItems());
 
   const [loading, setLoading] = useState(false);
@@ -61,16 +61,16 @@ export default function CheckoutPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isSignedIn || groupedItems.length === 0) return;
+    if (!user || groupedItems.length === 0) return;
 
     setLoading(true);
 
     try {
       const metadata = {
         orderNumber: crypto.randomUUID(),
-        clerkUserId: user.id,
-        customerName: user?.fullName ?? "Unknown",
-        customerEmail: user?.emailAddresses[0].emailAddress ?? "Unknown",
+        clerkUserId: user.uid,
+        customerName: user?.displayName ?? "Unknown",
+        customerEmail: user?.email ?? "Unknown",
         phone: `${selectedCountry.code}${phone}`, // Combine country code with phone number
         address,
         city,
@@ -97,10 +97,10 @@ export default function CheckoutPage() {
           body: JSON.stringify({
             orderDocId: result._id,
             orderId: result.orderId,
-            customerName: user?.fullName ?? "Unknown",
+            customerName: user?.displayName ?? "Unknown",
             totalPrice: metadata.totalPrice,
             currency,
-            customerEmail: user?.emailAddresses[0].emailAddress ?? "Unknown",
+            customerEmail: user?.email ?? "Unknown",
             phone: phone,
             address: address,
             city: city,

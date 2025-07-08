@@ -1,14 +1,17 @@
 "use client";
 
 import AddOrLessFromBasketButton from "@/components/AddOrLessFromBasketButton";
+import CheckoutLogin from "@/components/CheckoutLogin";
 import CurrencySwitcher from "@/components/CurrencySwitcher";
 import RemoveFromCart from "@/components/RemoveFromCart";
 import RemoveFromCartButton from "@/components/RemoveFromCartButton";
 import Loader from "@/components/ui/Loader";
+import { useAuth } from "@/context/AuthContext";
 import { imageUrl } from "@/lib/imageUrl";
 import useCurrencyStore from "@/store/currencyStore";
 import useBasketStore from "@/store/store";
-import { SignInButton, useAuth } from "@clerk/nextjs";
+// import { useAuth } from "@clerk/nextjs";
+// import { SignInButton, useAuth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -20,8 +23,7 @@ export default function CartPage() {
 
   const router = useRouter();
   const groupedItems = useBasketStore((state) => state.getGroupedItems());
-  const { isSignedIn } = useAuth();
-  // const { user } = useUser();
+  const { user } = useAuth();
 
   const [isClient, setIsClient] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -147,7 +149,7 @@ export default function CartPage() {
             </p>
           </div>
 
-          {isSignedIn ? (
+          {user ? (
             <button
               onClick={() => {
                 setIsLoading(true);
@@ -159,11 +161,7 @@ export default function CartPage() {
               {isLoading ? "Processing..." : "Checkout"}
             </button>
           ) : (
-            <SignInButton mode="modal">
-              <button className="mt-7 font-poppins w-full bg-black text-white px-4 py-2 rounded hover:bg-[#1b1b1b]">
-                Sign in to Checkout
-              </button>
-            </SignInButton>
+              <CheckoutLogin />
           )}
         </div>
 

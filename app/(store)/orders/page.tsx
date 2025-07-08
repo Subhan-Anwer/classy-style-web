@@ -1,18 +1,18 @@
 import { formatCurrency } from "@/lib/formatCurrency";
 import { imageUrl } from "@/lib/imageUrl";
 import { getMyOrders } from "@/sanity/lib/orders/getMyOrders";
-import { auth } from "@clerk/nextjs/server";
+import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
 export default async function OrdersPage() {
-  const { userId } = await auth();
+  const { user } = await useAuth();
 
-  if (!userId) {
+  if (!user?.uid) {
     return redirect("/");
   }
 
-  const orders = await getMyOrders(userId);
+  const orders = await getMyOrders(user.uid);
 
   const localCurrency = "SAR";
 
