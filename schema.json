@@ -518,7 +518,7 @@
         },
         "optional": true
       },
-      "clerkUserId": {
+      "firebaseUserId": {
         "type": "objectAttribute",
         "value": {
           "type": "string"

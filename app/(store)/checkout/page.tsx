@@ -68,7 +68,7 @@ export default function CheckoutPage() {
     try {
       const metadata = {
         orderNumber: crypto.randomUUID(),
-        clerkUserId: user.uid,
+        firebaseUserId: user.uid,
         customerName: user?.displayName ?? "Unknown",
         customerEmail: user?.email ?? "Unknown",
         phone: `${selectedCountry.code}${phone}`, // Combine country code with phone number

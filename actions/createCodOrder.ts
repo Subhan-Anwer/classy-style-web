@@ -8,7 +8,7 @@ type Metadata = {
   orderNumber: string;
   customerName: string;
   customerEmail: string;
-  clerkUserId: string;
+  firebaseUserId: string;
   totalPrice: string;
   phone: string,
   address: string,
@@ -28,7 +28,7 @@ export async function createCodOrder(
   items: GroupedBasketItems[],
   metadata: Metadata
 ) {
-  const { orderNumber, customerName, customerEmail, clerkUserId, totalPrice, phone, address, city, postalCode, engravingName, note, currency,} =
+  const { orderNumber, customerName, customerEmail, firebaseUserId, totalPrice, phone, address, city, postalCode, engravingName, note, currency,} =
     metadata as Metadata;
 
     
@@ -45,7 +45,7 @@ export async function createCodOrder(
     const order = await backendClient.create({
       _type: "order",
       orderId: orderNumber,
-      clerkUserId: clerkUserId,
+      firebaseUserId: firebaseUserId,
       customerName: customerName,
       email: customerEmail,
       phone: phone,

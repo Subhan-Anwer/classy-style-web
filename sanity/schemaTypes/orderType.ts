@@ -14,7 +14,7 @@ export const orderType = defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
-            name: 'clerkUserId',
+            name: 'firebaseUserId',
             title: 'Store User ID',
             type: 'string',
             validation: (Rule) => Rule.required(),
