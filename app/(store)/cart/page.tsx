@@ -10,8 +10,6 @@ import { useAuth } from "@/context/AuthContext";
 import { imageUrl } from "@/lib/imageUrl";
 import useCurrencyStore from "@/store/currencyStore";
 import useBasketStore from "@/store/store";
-// import { useAuth } from "@clerk/nextjs";
-// import { SignInButton, useAuth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

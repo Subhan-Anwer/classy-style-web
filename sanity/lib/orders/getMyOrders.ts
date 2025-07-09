@@ -6,9 +6,9 @@ export async function getMyOrders(userId: string) {
         throw new Error("User Id is required");
     }
 
-    // Define the query to get my orders based on user Id, sorted by order date descending
+    // Define the query to get my orders based on Firebase UID, sorted by order date descending
     const MY_ORDERS_QUERY = defineQuery(`
-            *[_type == "order" && clerkUserId == $userId
+            *[_type == "order" && firebaseUserId == $userId
             ] | order(orderDate desc) {
                 ...,
                 products[]{

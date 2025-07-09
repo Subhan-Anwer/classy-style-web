@@ -83,7 +83,7 @@ const CheckoutLogin = () => {
                     <path
                       stroke="currentColor"
                       strokeLinecap="round"
-                      stroke-linejoin="round"
+                      strokeLinejoin="round"
                       stroke-width="2"
                       d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
                     />
@@ -186,7 +186,7 @@ const CheckoutLogin = () => {
                     type="submit"
                     className="w-full text-white bg-[#d7931b] rounded-[6px] hover:bg-[rgb(215,140,27)] focus:outline-none focus:ring-0 font-medium text-sm px-5 py-2.5 text-center"
                   >
-                    {mode === "login" ? "Sign In" : "Sign Up"} {/* new */}
+                    {mode === "login" ? "Sign In to Checkout" : "Sign Up to Checkout"} {/* new */}
                   </button>
                   <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                     Not registered?{" "}

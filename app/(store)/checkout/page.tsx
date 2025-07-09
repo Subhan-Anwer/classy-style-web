@@ -85,7 +85,6 @@ export default function CheckoutPage() {
       };
 
       const result = await createCodOrder(groupedItems, metadata);
-      // console.log("✅ Order Result:", result);
 
       if (result._id) {
         // 👇 Send the order email to client
@@ -116,7 +115,8 @@ export default function CheckoutPage() {
         alert("❌ Failed to place order.");
       }
     } catch (error) {
-      console.error("❌ Error:", error);
+      alert("❌ Error placing order. Please try again.");
+      console.error("Error placing order:", error);
     } finally {
       setLoading(false);
     }

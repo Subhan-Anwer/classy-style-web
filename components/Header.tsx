@@ -16,7 +16,7 @@ const navLinks = [
   { title: "About Us", path: "/about" },
   { title: "Shop", path: "/shop" },
   { title: "Contact", path: "/contact" },
-  { title: "My Orders", path: "/orders" },
+  { title: "My Orders", path: "/orders/auth-check" },
 ];
 
 const Header = () => {

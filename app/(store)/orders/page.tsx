@@ -1,18 +1,19 @@
 import { formatCurrency } from "@/lib/formatCurrency";
 import { imageUrl } from "@/lib/imageUrl";
-import { getMyOrders } from "@/sanity/lib/orders/getMyOrders";
-import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
+import { cookies } from 'next/headers';
 import { redirect } from "next/navigation";
+import { getMyOrders } from "@/sanity/lib/orders/getMyOrders";
 
 export default async function OrdersPage() {
-  const { user } = await useAuth();
+  const cookieStore = await cookies();
+  const uid = cookieStore.get('__uid')?.value;
 
-  if (!user?.uid) {
-    return redirect("/");
+  if (!uid) {
+    redirect('/orders/auth-check');
   }
 
-  const orders = await getMyOrders(user.uid);
+  const orders = await getMyOrders(uid);
 
   const localCurrency = "SAR";
 
