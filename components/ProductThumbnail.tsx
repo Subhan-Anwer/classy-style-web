@@ -47,14 +47,14 @@ const ProductThumbnail = ({ product }: { product: Product }) => {
       </div>
 
       {/* Text Content */}
-      <div className="p-4">
+      <div className="p-[10px] sm:p-4">
         {/* Product Title/Name */}
-        <h2 className="text-2xl font-semibold text-[#191919] truncate">
+        <h2 className="text-lg sm:text-2xl font-semibold text-[#191919] line-clamp-3  sm:truncate">
           {product.name}
         </h2>
 
         {/* Product Description */}
-        <p className="mt-4 text-sm font-poppins tracking-normal text-gray-600 line-clamp-2">
+        <p className="mt-2 sm:mt-4 text-sm font-poppins tracking-normal text-gray-600 line-clamp-2">
           {product.description
             ?.map((block) =>
               block._type === "block"
@@ -65,11 +65,11 @@ const ProductThumbnail = ({ product }: { product: Product }) => {
         </p>
 
         {/* Product Price */}
-        <div className="flex items-center gap-2 mt-4">
-          <p className="font-inter  text-lg font-medium text-[#191919]">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-0 sm:gap-2 mt-2 sm:mt-4">
+          <p className="font-inter text-lg font-medium text-[#191919]">
             {currency} {price.toFixed(2)}
           </p>
-          <p className="font-inter  text-sm tracking-wider line-through font-medium text-[#747474]">
+          <p className="font-inter text-sm tracking-wider line-through font-medium text-[#747474]">
             {currency} {oldPrice.toFixed(2)}
           </p>
         </div>

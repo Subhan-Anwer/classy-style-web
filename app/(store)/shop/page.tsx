@@ -25,7 +25,7 @@ const page = async () => {
         <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold">Shop</h2>
       </div>
 
-      <div className="flex flex-col items-center justify-top min-h-screen p-4">
+      <div className="flex flex-col items-center justify-top min-h-screen p-2 sm:p-4">
         <ProductsView products={products} categories={categories} />
       </div>
     </div>
