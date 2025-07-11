@@ -10,6 +10,8 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
+
 
 const Login = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,29 +31,35 @@ const Login = () => {
       await signInWithPopup(auth, provider);
       setIsOpen(false);
       setError(""); // Clear any previous errors
-    } catch (err: any) {
-      console.error('Google login error:', err);
+    } catch (err: unknown) {
+      console.error("Google login error:", err);
       let errorMessage = "An error occurred during sign in";
-      
-      if (err.code) {
-        switch (err.code) {
-          case 'auth/popup-closed-by-user':
+
+      // Type guard to check if err is a FirebaseError
+      if (typeof err === "object" && err !== null && "code" in err) {
+        const errorCode = (err as { code: string; message?: string }).code;
+
+        switch (errorCode) {
+          case "auth/popup-closed-by-user":
             errorMessage = "Sign in was cancelled";
             break;
-          case 'auth/popup-blocked':
+          case "auth/popup-blocked":
             errorMessage = "Pop-up blocked. Please allow pop-ups and try again";
             break;
-          case 'auth/cancelled-popup-request':
+          case "auth/cancelled-popup-request":
             errorMessage = "Sign in was cancelled";
             break;
-          case 'auth/network-request-failed':
-            errorMessage = "Network error. Please check your connection and try again";
+          case "auth/network-request-failed":
+            errorMessage =
+              "Network error. Please check your connection and try again";
             break;
-          case 'auth/too-many-requests':
+          case "auth/too-many-requests":
             errorMessage = "Too many attempts. Please try again later";
             break;
           default:
-            errorMessage = err.message || "An error occurred during sign in";
+            errorMessage =
+              (err as { message?: string }).message ||
+              "An error occurred during sign in";
         }
       }
       setError(errorMessage);
@@ -69,40 +77,41 @@ const Login = () => {
         await signInWithEmailAndPassword(auth, email, password);
       }
       setIsOpen(false);
-    } catch (err: any) {
-      console.error('Email auth error:', err);
+    } catch (err: unknown) {
+      console.error("Email auth error:", err);
       let errorMessage = "An error occurred during sign in";
-      
-      if (err.code) {
-        switch (err.code) {
-          case 'auth/user-not-found':
-            errorMessage = "No account found with this email";
-            break;
-          case 'auth/wrong-password':
-            errorMessage = "Incorrect password";
-            break;
-          case 'auth/invalid-email':
-            errorMessage = "Invalid email address";
-            break;
-          case 'auth/user-disabled':
-            errorMessage = "This account has been disabled";
-            break;
-          case 'auth/email-already-in-use':
-            errorMessage = "An account with this email already exists";
-            break;
-          case 'auth/weak-password':
-            errorMessage = "Password should be at least 6 characters";
-            break;
-          case 'auth/network-request-failed':
-            errorMessage = "Network error. Please check your connection and try again";
-            break;
-          case 'auth/too-many-requests':
-            errorMessage = "Too many attempts. Please try again later";
-            break;
-          default:
-            errorMessage = err.message || "An error occurred during sign in";
-        }
+
+      // ✅ Safely check and access Firebase error
+    if (err instanceof FirebaseError) {
+      switch (err.code) {
+        case "auth/user-not-found":
+          errorMessage = "No account found with this email";
+          break;
+        case "auth/wrong-password":
+          errorMessage = "Incorrect password";
+          break;
+        case "auth/invalid-email":
+          errorMessage = "Invalid email address";
+          break;
+        case "auth/user-disabled":
+          errorMessage = "This account has been disabled";
+          break;
+        case "auth/email-already-in-use":
+          errorMessage = "An account with this email already exists";
+          break;
+        case "auth/weak-password":
+          errorMessage = "Password should be at least 6 characters";
+          break;
+        case "auth/network-request-failed":
+          errorMessage = "Network error. Please check your connection and try again";
+          break;
+        case "auth/too-many-requests":
+          errorMessage = "Too many attempts. Please try again later";
+          break;
+        default:
+          errorMessage = err.message || "An error occurred during sign in";
       }
+    }
       setError(errorMessage);
     }
   };
