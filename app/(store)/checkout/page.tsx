@@ -16,6 +16,7 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(false);
 
   // Form Fields State
+  const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -96,7 +97,7 @@ export default function CheckoutPage() {
           body: JSON.stringify({
             orderDocId: result._id,
             orderId: result.orderId,
-            customerName: user?.displayName ?? "Unknown",
+            customerName: user?.displayName ?? name,
             totalPrice: metadata.totalPrice,
             currency,
             customerEmail: user?.email ?? "Unknown",
@@ -139,6 +140,17 @@ export default function CheckoutPage() {
                 Delivery Information
               </h2>
               <div className="space-y-4">
+
+
+                {!user?.displayName && (<input
+                  type="text"
+                  placeholder="Your Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  className="w-full focus:outline-none focus:border-[#292929] border border-[#bdbdbd] bg-[#f8f8f8] px-4 py-3 rounded-[6px] font-poppins text-black"
+                />)}
+
                 <div className="flex w-full relative" ref={dropdownRef}>
                   <button
                     type="button"
