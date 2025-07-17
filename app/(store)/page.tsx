@@ -26,7 +26,7 @@ export default function Home() {
       <CurrencySwitcher />
 
       {/* Get 10% discount Section */}
-      <DiscountSection />
+      {/* <DiscountSection /> */}
 
       {/* Testimonial Section */}
       <TestimonialsCarousel />
