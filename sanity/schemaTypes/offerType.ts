@@ -2,31 +2,21 @@ import { ConfettiIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export const salesType = defineType({
-    name: 'sale',
-    title: 'Sale',
+    name: 'offer',
+    title: 'Offer',
     type: 'document',
     icon: ConfettiIcon,
     fields: [
         defineField({
             name: 'title',
-            title: 'Sale Title',
+            title: 'Offer Title',
             type: 'string',
+            validation: Rule => Rule.required().min(0)
         }),
         defineField({
             name: 'description',
-            title: 'Sale Description',
+            title: 'Offer Description',
             type: 'text',
-        }),
-        defineField({
-            name: 'discountAmount',
-            title: 'Dicount Amount',
-            type: 'number',
-            description: 'Amount off in percentage or fixed value'
-        }),
-        defineField({
-            name: 'couponCode',
-            title: 'Coupon Code',
-            type: 'string',
         }),
         defineField({
             name: 'validFrom',
@@ -43,22 +33,21 @@ export const salesType = defineType({
             title: 'Is Active',
             type: 'boolean',
             description: 'toggle to activate/deactivate the sale',
-            initialValue: true
+            initialValue: true,
+            validation: Rule => Rule.required()
         }),
     ],
     preview: {
         select: {
             title: 'title',
-            discountAmount: 'discountAmount',
-            couponCode: 'couponCode',
             isActive: 'isActive',
         },
         prepare(selection) {
-            const { title, discountAmount, couponCode, isActive } = selection;
+            const { title, isActive } = selection;
             const status = isActive ? "Active" : "Inactive";
             return {
                 title,
-                subtitle: `${discountAmount}% off - Code: ${couponCode} - ${status}`
+                subtitle: `Status - ${status}`
             }
         },
     },

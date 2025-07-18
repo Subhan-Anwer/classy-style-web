@@ -391,7 +391,7 @@
     }
   },
   {
-    "name": "sale",
+    "name": "offer",
     "type": "document",
     "attributes": {
       "_id": {
@@ -404,7 +404,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "string",
-          "value": "sale"
+          "value": "offer"
         }
       },
       "_createdAt": {
@@ -433,20 +433,6 @@
         "optional": true
       },
       "description": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
-      "discountAmount": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "number"
-        },
-        "optional": true
-      },
-      "couponCode": {
         "type": "objectAttribute",
         "value": {
           "type": "string"

@@ -9,6 +9,7 @@ import RemoveFromCartButton from "@/components/RemoveFromCartButton";
 import Loader from "@/components/ui/Loader";
 import { useAuth } from "@/context/AuthContext";
 import { imageUrl } from "@/lib/imageUrl";
+import { getActiveOffer } from "@/sanity/lib/sale/getActiveOffer";
 import useCurrencyStore from "@/store/currencyStore";
 import useBasketStore from "@/store/store";
 import Image from "next/image";
@@ -16,8 +17,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function CartPage() {
+export default async function CartPage() {
   const currency = useCurrencyStore((state) => state.currency);
+  const offer = await getActiveOffer();
   
 
   const router = useRouter();
@@ -64,7 +66,7 @@ export default function CartPage() {
         Your Cart
       </h1>
 
-      <BogoPara />
+      {offer?.isActive && <BogoPara />}
 
       <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 mt-6">
         {/* Product List */}

@@ -1,6 +1,6 @@
 import { Product } from "@/sanity.types";
-import { projectId } from "@/sanity/env";
-import { productType } from "@/sanity/schemaTypes/productType";
+// import { projectId } from "@/sanity/env";
+// import { productType } from "@/sanity/schemaTypes/productType";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 

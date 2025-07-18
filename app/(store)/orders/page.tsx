@@ -1,19 +1,21 @@
 import { formatCurrency } from "@/lib/formatCurrency";
 import { imageUrl } from "@/lib/imageUrl";
 import Image from "next/image";
-import { cookies } from 'next/headers';
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getMyOrders } from "@/sanity/lib/orders/getMyOrders";
+import { getActiveOffer } from "@/sanity/lib/sale/getActiveOffer";
 
 export default async function OrdersPage() {
   const cookieStore = await cookies();
-  const uid = cookieStore.get('__uid')?.value;
+  const uid = cookieStore.get("__uid")?.value;
 
   if (!uid) {
-    redirect('/orders/auth-check');
+    redirect("/orders/auth-check");
   }
 
   const orders = await getMyOrders(uid);
+  const offer = await getActiveOffer();
 
   const localCurrency = "SAR";
 
@@ -93,8 +95,6 @@ export default async function OrdersPage() {
                       </p>
                     </div>
                   </div>
-
-                                  
                 </div>
 
                 {/* Order Items */}
@@ -123,9 +123,11 @@ export default async function OrdersPage() {
                             <p className="font-medium text-sm sm:text-base">
                               Quantity: {product.quantity ?? "N/A"}
                             </p>
-                            <p className="font-medium text-sm sm:text-base">
-                              Offer: +{product.quantity ?? "N/A"} Free
-                            </p>
+                            {offer?.isActive && (
+                              <p className="font-medium text-sm sm:text-base">
+                                Offer: +{product.quantity ?? "N/A"} Free
+                              </p>
+                            )}
                           </div>
                         </div>
 

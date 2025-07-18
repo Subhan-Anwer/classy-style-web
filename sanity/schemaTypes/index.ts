@@ -3,7 +3,7 @@ import { blockContentType } from './blockContentType'
 import { categoryType } from './categoryType'
 import { orderType } from './orderType'
 import { productType } from './productType'
-import { salesType } from './salesType'
+import { salesType } from './offerType'
 import { contactType } from './contactType'
 
 export const schema: { types: SchemaTypeDefinition[] } = {

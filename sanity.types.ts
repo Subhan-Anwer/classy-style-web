@@ -80,16 +80,14 @@ export type ContactQuery = {
   date?: string;
 };
 
-export type Sale = {
+export type Offer = {
   _id: string;
-  _type: "sale";
+  _type: "offer";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   title?: string;
   description?: string;
-  discountAmount?: number;
-  couponCode?: string;
   validFrom?: string;
   validUntil?: string;
   isActive?: boolean;
@@ -296,7 +294,7 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | ContactQuery | Sale | Order | Product | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | ContactQuery | Offer | Order | Product | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/orders/getMyOrders.ts
 // Variable: MY_ORDERS_QUERY
@@ -667,6 +665,22 @@ export type PRODUCT_SEARCH_QUERYResult = Array<{
   stock?: number;
 }>;
 
+// Source: ./sanity/lib/sale/getActiveOffer.ts
+// Variable: GET_ACTIVE_OFFER_QUERY
+// Query: *[_type == "offer" && isActive == true][0]
+export type GET_ACTIVE_OFFER_QUERYResult = {
+  _id: string;
+  _type: "offer";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  description?: string;
+  validFrom?: string;
+  validUntil?: string;
+  isActive?: boolean;
+} | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
@@ -677,5 +691,6 @@ declare module "@sanity/client" {
     "\n            *[\n                _type == \"product\" && slug.current ==$slug\n            ] | order(name asc) [0]\n        ": PRODUCT_BY_ID_QUERYResult;
     "\n            *[\n                _type == \"product\"\n                && references(*[_type == \"category\" && slug.current == $categorySlug]._id)\n            ] | order(name asc)\n        ": PRODUCTS_BY_CATEGORY_QUERYResult;
     "\n        *[\n            _type == \"product\"\n            && name match $searchParam\n        ] | order(name asc)\n    ": PRODUCT_SEARCH_QUERYResult;
+    "\n            *[_type == \"offer\" && isActive == true][0]\n        ": GET_ACTIVE_OFFER_QUERYResult;
   }
 }
