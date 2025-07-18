@@ -1,6 +1,7 @@
 "use client";
 
 import AddOrLessFromBasketButton from "@/components/AddOrLessFromBasketButton";
+import BogoPara from "@/components/BogoPara";
 import CheckoutLogin from "@/components/CheckoutLogin";
 import CurrencySwitcher from "@/components/CurrencySwitcher";
 import RemoveFromCart from "@/components/RemoveFromCart";
@@ -59,11 +60,13 @@ export default function CartPage() {
       {/* Currency Switcher */}
       <CurrencySwitcher />
 
-      <h1 className="text-5xl font-semibold mb-6 sm:mb-10 text-center text-black">
+      <h1 className="text-5xl font-semibold text-center text-black">
         Your Cart
       </h1>
 
-      <div className="flex flex-col lg:flex-row gap-6 sm:gap-8">
+      <BogoPara />
+
+      <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 mt-6">
         {/* Product List */}
         <div className="flex-grow">
           {groupedItems?.map((item) => (
@@ -136,6 +139,15 @@ export default function CartPage() {
                 {groupedItems.reduce((total, item) => total + item.quantity, 0)}
               </span>
             </p>
+            
+            <p className="flex font-poppins font-normal text-gray-700 justify-between">
+              <span>Offer Applied:</span>
+              <span>
+                +{groupedItems.reduce((total, item) => total + item.quantity, 0)}{" "}Free
+              </span>
+            </p>
+
+
             <p className="flex font-poppins font-semibold justify-between text-xl sm:text-2xl border-t border-gray-400 pt-2">
               <span>Total:</span>
               <span>

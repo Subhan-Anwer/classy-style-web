@@ -39,6 +39,7 @@ export default async function OrdersPage() {
           My Orders
         </h1>
 
+        {/* If No Orders Have Placed */}
         {orders.length === 0 ? (
           <div className="text-center text-gray-600">
             <p>You haven&lsquo;t placed any orders yet.</p>
@@ -93,25 +94,7 @@ export default async function OrdersPage() {
                     </div>
                   </div>
 
-                  {/* Discount & Original Subtotal */}
-                  {/* {order.amountDiscount ? (
-                    <div className="mt-4 p-3 sm:p-4 bg-red-50 rounded-lg">
-                      <p className="text-red-600 font-medium mb-1 text-sm sm:text-base">
-                        Discount Applied:{" "}
-                        {formatCurrency(
-                          order.amountDiscount,
-                          order.currency ?? localCurrency
-                        )}
-                      </p>
-                      <p className="text-sm text-gray-600">
-                        Original Subtotal:{" "}
-                        {formatCurrency(
-                          (order.totalPrice ?? 0) + order.amountDiscount,
-                          order.currency ?? localCurrency
-                        )}
-                      </p>
-                    </div>
-                  ) : null} */}
+                                  
                 </div>
 
                 {/* Order Items */}
@@ -139,6 +122,9 @@ export default async function OrdersPage() {
                           <div>
                             <p className="font-medium text-sm sm:text-base">
                               Quantity: {product.quantity ?? "N/A"}
+                            </p>
+                            <p className="font-medium text-sm sm:text-base">
+                              Offer: +{product.quantity ?? "N/A"} Free
                             </p>
                           </div>
                         </div>
