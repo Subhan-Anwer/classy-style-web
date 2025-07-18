@@ -1,7 +1,7 @@
 
 import CurrencySwitcher from "@/components/CurrencySwitcher";
 import CheckoutUs from "@/components/home-page/CheckoutUs";
-import DiscountSection from "@/components/home-page/DiscountSection";
+// import DiscountSection from "@/components/home-page/DiscountSection";
 import FeaturedSection from "@/components/home-page/FeaturedSection";
 import Hero from "@/components/home-page/Hero";
 import ShopByCategory from "@/components/home-page/ShopByCategory";
