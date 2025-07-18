@@ -11,8 +11,8 @@ const BogoPara = () => {
     >
       <span className="text-xl animate-bounce">🎁</span>
       <div>
-        <p className="font-semibold text-sm sm:text-base font-inter">
-          Buy One, Get One Free - Limited Time Only!
+        <p className="font-semibold text-sm sm:text-base font-inter text-center">
+          Buy One, Get One Free! <br className="block md:hidden"/>Limited Time Offer 
         </p>
       </div>
       <span className="text-xl animate-bounce">🎁</span>

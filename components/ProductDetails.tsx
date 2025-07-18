@@ -8,6 +8,7 @@ import CurrencySwitcher from "./CurrencySwitcher";
 import { Product } from "@/sanity.types";
 import useCurrencyStore from "@/store/currencyStore";
 import { useEffect, useState } from "react";
+import BogoPara from "./BogoPara";
 
 export default function ProductDetails({ product }: { product: Product }) {
   const currency = useCurrencyStore((state) => state.currency);
@@ -64,6 +65,8 @@ export default function ProductDetails({ product }: { product: Product }) {
               </p>
             )}
           </div>
+
+          <BogoPara />
 
           <div className="prose max-w-none mb-6">
             <h5 className="font-light text-lg">
