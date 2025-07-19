@@ -122,6 +122,7 @@ export type Order = {
   totalPrice?: string;
   currency?: string;
   status?: "cash-on-delivery" | "paid" | "shipped" | "delivered" | "cancelled";
+  offerApplied?: boolean;
   orderDate?: string;
 };
 
@@ -384,6 +385,7 @@ export type MY_ORDERS_QUERYResult = Array<{
   totalPrice?: string;
   currency?: string;
   status?: "cancelled" | "cash-on-delivery" | "delivered" | "paid" | "shipped";
+  offerApplied?: boolean;
   orderDate?: string;
 }>;
 

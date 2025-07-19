@@ -132,6 +132,12 @@ export const orderType = defineType({
             },
         }),
         defineField({
+            name: 'offerApplied',
+            title: 'Offer Applied',
+            type: 'boolean',
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
             name: 'orderDate',
             title: 'Order Date',
             type: 'datetime',

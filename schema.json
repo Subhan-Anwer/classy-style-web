@@ -670,6 +670,13 @@
         },
         "optional": true
       },
+      "offerApplied": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
+        },
+        "optional": true
+      },
       "orderDate": {
         "type": "objectAttribute",
         "value": {

@@ -4,7 +4,6 @@ import Image from "next/image";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getMyOrders } from "@/sanity/lib/orders/getMyOrders";
-import { getActiveOffer } from "@/sanity/lib/sale/getActiveOffer";
 
 export default async function OrdersPage() {
   const cookieStore = await cookies();
@@ -15,7 +14,6 @@ export default async function OrdersPage() {
   }
 
   const orders = await getMyOrders(uid);
-  const offer = await getActiveOffer();
 
   const localCurrency = "SAR";
 
@@ -123,7 +121,7 @@ export default async function OrdersPage() {
                             <p className="font-medium text-sm sm:text-base">
                               Quantity: {product.quantity ?? "N/A"}
                             </p>
-                            {offer?.isActive && (
+                            {order.offerApplied == true && (
                               <p className="font-medium text-sm sm:text-base">
                                 Offer: +{product.quantity ?? "N/A"} Free
                               </p>
