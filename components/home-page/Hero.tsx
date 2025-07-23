@@ -1,9 +1,11 @@
 // import { COUPON_CODES } from "@/sanity/lib/sale/couponCode";
 // import { getActiveSaleByCouponCode } from "@/sanity/lib/sale/getActiveSaleByCouponCode";
+import { getActiveOffer } from "@/sanity/lib/sale/getActiveOffer";
 import Image from "next/image";
 import Link from "next/link";
 
-const Hero = () => {
+const Hero = async () => {
+  const offer = await getActiveOffer();
   //   const sale = await getActiveSaleByCouponCode(COUPON_CODES.BFRIDAY50);
 
   //   if (!sale?.isActive) {
@@ -22,19 +24,26 @@ const Hero = () => {
       />
 
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4">
-        <h1 className=" text-4xl sm:text-5xl md:text-6xl leading-tight text-shadow-sm">
-          Buy {" "}
-          <span className="text-[48px] sm:text-[60px] md:text-[80px]">1</span>,
-          Get {" "}
-          <span className="text-[48px] sm:text-[60px] md:text-[80px]">1</span>{" "}
-          Free
-          <br />
-        </h1>
-        
-        <p className="font-poppins text-lg sm:text-xl md:text-2xl tracking-wider font-light block mt-3 text-shadow-lg">
-          Limited Time Offer on All Items!
-        </p>
+        {offer?.isActive ? (
+          <h1 className=" text-4xl sm:text-5xl md:text-6xl leading-tight text-shadow-sm">
+            Buy{" "}
+            <span className="text-[48px] sm:text-[60px] md:text-[80px]">1</span>
+            , Get{" "}
+            <span className="text-[48px] sm:text-[60px] md:text-[80px]">1</span>{" "}
+            Free
+            <br />
+          </h1>
+        ) : (
+          <>
+            <h1 className=" text-4xl sm:text-5xl md:text-6xl leading-tight text-shadow-sm">
+              Elevate Your Everyday Look
+            </h1>
 
+            <p className="font-poppins text-lg sm:text-xl md:text-2xl tracking-wider font-light block mt-3 text-shadow-lg">
+              Discover Timeless Fashion That Speaks Class
+            </p>
+          </>
+        )}
 
         <Link href="/shop">
           <button className="mt-6 px-6 py-2 font-inter text-sm sm:text-base rounded-full border-2 border-[#d7931b] bg-black  transition-all duration-300 hover:shadow-[0_0_5px_#d7931b] hover:scale-x-105">

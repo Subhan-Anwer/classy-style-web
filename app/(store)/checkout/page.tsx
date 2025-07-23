@@ -8,10 +8,12 @@ import { createCodOrder } from "@/actions/createCodOrder";
 import useCurrencyStore from "@/store/currencyStore";
 
 export default function CheckoutPage() {
+  
   const currency = useCurrencyStore((state) => state.currency);
   const router = useRouter();
   const { user } = useAuth();
   const groupedItems = useBasketStore((state) => state.getGroupedItems());
+  console.log("groupedItems>>>>>> ",groupedItems)
 
   const [loading, setLoading] = useState(false);
 
@@ -105,6 +107,7 @@ export default function CheckoutPage() {
             address: address,
             city: city,
             postalCode: Number(postalCode),
+            orderItems: groupedItems,
             engravingName: engravingName,
             note: note,
           }),

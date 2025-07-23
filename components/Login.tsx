@@ -2,7 +2,6 @@
 import { useState, FormEvent } from "react";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
-import { FaApple } from "react-icons/fa";
 import { auth } from "@/lib/firebaseConfig";
 import {
   GoogleAuthProvider,
@@ -171,10 +170,6 @@ const Login = () => {
                     className="flex items-center justify-center w-full gap-2 text-black bg-white border-black border border-opacity-75 focus:outline-[#d7931b] font-medium rounded-[6px] text-sm px-5 py-2.5"
                   >
                     <FcGoogle /> Continue with Google
-                  </button>
-
-                  <button className="flex items-center justify-center w-full gap-2 text-white bg-black hover:bg-gray-900 focus:outline-[#d7931b] font-medium rounded-[6px] text-sm px-5 py-2.5">
-                    <FaApple /> Continue with Apple
                   </button>
                 </div>
 

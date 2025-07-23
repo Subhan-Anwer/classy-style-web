@@ -9,7 +9,6 @@ import { useEffect } from 'react'
 export default function SuccessPage () {
   const searchParams = useSearchParams();
   const orderId = searchParams.get("orderId");
-  console.log("Order ID:", orderId);
   const clearBasket = useBasketStore((state) => state.clearBasket);
 
   useEffect(() => {
